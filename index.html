@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vladosic15 // lab — Sentinel OS Ecosystem</title>
+  <title>vladosic15 // lab — Sentinel OS Ecosystem v5.0 & v8.0</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,24 +25,24 @@
       background-color: #05080f;
       color: #cbd5e1;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.06) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.09) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.07) 0px, transparent 50%),
         radial-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 28px 28px;
     }
     .cyber-card {
-      background: rgba(11, 18, 30, 0.75);
+      background: rgba(11, 18, 30, 0.78);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(30, 41, 59, 0.9);
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .cyber-card:hover {
       border-color: rgba(56, 189, 248, 0.45);
-      box-shadow: 0 10px 40px -15px rgba(2, 132, 199, 0.2);
+      box-shadow: 0 10px 40px -15px rgba(2, 132, 199, 0.22);
     }
     .cyber-card-green:hover {
       border-color: rgba(16, 185, 129, 0.45);
-      box-shadow: 0 10px 40px -15px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 10px 40px -15px rgba(16, 185, 129, 0.22);
     }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: #05080f; }
@@ -58,11 +58,13 @@
       <div class="flex items-center gap-3">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <span class="font-mono font-bold text-white tracking-tight text-lg">vladosic15 <span class="text-sky-400">//</span> lab</span>
+        <span class="hidden md:inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">BUILD 2026.10</span>
       </div>
-      <div class="flex items-center gap-6 text-xs font-mono">
-        <a href="#projects" class="text-slate-400 hover:text-white transition-colors hidden sm:inline">Проекты</a>
-        <a href="#setup" class="text-slate-400 hover:text-white transition-colors hidden sm:inline">Установка</a>
-        <a href="https://github.com/vladosic15-cpu/vladosic15-cpu.github.io" target="_blank" class="text-slate-400 hover:text-white transition-colors">Репозиторий</a>
+      <div class="flex items-center gap-5 text-xs font-mono">
+        <a href="#setup" class="text-slate-400 hover:text-white transition-colors hidden sm:inline">Лаунчер</a>
+        <a href="#projects" class="text-slate-400 hover:text-white transition-colors hidden sm:inline">Модули</a>
+        <a href="#interactive-demo" class="text-sky-400 hover:text-sky-300 transition-colors hidden md:inline">Live-Демо</a>
+        <a href="https://github.com/vladosic15-cpu/vladosic15-cpu.github.io" target="_blank" class="text-slate-400 hover:text-white transition-colors">GitHub</a>
         <a href="https://t.me/Tony_Versety" target="_blank" class="bg-sky-500/10 border border-sky-500/30 text-sky-400 hover:bg-sky-500/20 px-3 py-1.5 rounded-md transition-all">
           @Tony_Versety &rarr;
         </a>
@@ -73,59 +75,72 @@
   <main class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
 
     <!-- Главный блок (Hero) -->
-    <header class="mb-16">
+    <header class="mb-14">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-sky-400 mb-6">
         <span>⚡ SENTINEL OS ECOSYSTEM</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-emerald-400">Core v5.0 &bull; Focus Matrix v8.0</span>
         <span class="text-slate-600">|</span>
         <span class="text-slate-400">Windows 10 / 11 (x64)</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight mb-5 font-mono leading-tight">
         Системная автоматизация <br class="hidden sm:inline" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">и управление рабочим пространством</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-cyan-300 to-emerald-400">и управление мульти-мониторами</span>
       </h1>
       <p class="text-slate-400 text-base sm:text-lg max-w-3xl leading-relaxed mb-8">
-        Авторские утилиты с открытым исходным кодом для наведения идеального порядка в файловой системе, защиты ОС от скрытых угроз и комфортной работы за несколькими мониторами. Все файлы загружаются напрямую из официального репозитория GitHub.
+        Открытая экосистема утилит для автоматической сортировки файлов, быстрого поиска дубликатов (Smart MD5), сигнатурной защиты ОС и кинематографичного затемнения неактивных дисплеев (60 FPS). Прямая загрузка из официального репозитория GitHub.
       </p>
+
+      <!-- Быстрая панель скачивания всего пакета -->
+      <div class="flex flex-wrap items-center gap-3 mb-10 font-mono text-xs">
+        <button onclick="downloadAllBundle()" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-sky-500 to-emerald-500 hover:from-sky-400 hover:to-emerald-400 text-black font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-sky-950/60 cursor-pointer">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Скачать полный комплект (Все 3 файла в 1 клик)
+        </button>
+        <a href="https://github.com/vladosic15-cpu/vladosic15-cpu.github.io" target="_blank" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-slate-300 px-5 py-3.5 rounded-xl border border-slate-800 transition-all">
+          Исходный код репозитория &nearr;
+        </a>
+      </div>
 
       <!-- Статистика / Фичи -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800/80 font-mono">
         <div class="bg-slate-900/40 border border-slate-800/60 p-4 rounded-lg">
           <div class="text-xl font-bold text-white">Python 3.10+</div>
-          <div class="text-xs text-slate-500 mt-1">Ядро выполнения</div>
+          <div class="text-xs text-slate-500 mt-1">Потокобезопасное ядро</div>
         </div>
         <div class="bg-slate-900/40 border border-slate-800/60 p-4 rounded-lg">
-          <div class="text-xl font-bold text-sky-400">WinAPI Native</div>
-          <div class="text-xs text-slate-500 mt-1">Прямая работа с ОС</div>
+          <div class="text-xl font-bold text-sky-400">WinAPI + 60 FPS</div>
+          <div class="text-xs text-slate-500 mt-1">Плавные оверлеи и хуки</div>
         </div>
         <div class="bg-slate-900/40 border border-slate-800/60 p-4 rounded-lg">
-          <div class="text-xl font-bold text-emerald-400">0% Телеметрии</div>
-          <div class="text-xs text-slate-500 mt-1">Полная автономность</div>
+          <div class="text-xl font-bold text-emerald-400">Smart MD5</div>
+          <div class="text-xs text-slate-500 mt-1">Дедупликация в 30x быстрее</div>
         </div>
         <div class="bg-slate-900/40 border border-slate-800/60 p-4 rounded-lg">
           <div class="text-xl font-bold text-amber-400">Open Source</div>
-          <div class="text-xs text-slate-500 mt-1">Прямая загрузка с GitHub</div>
+          <div class="text-xs text-slate-500 mt-1">0% внешней телеметрии</div>
         </div>
       </div>
     </header>
 
-    <!-- Блок 0: Автоустановщик окружения Python -->
+    <!-- Блок 0: Автоустановщик и Лаунчер sentinel_setup.bat v5.0 -->
     <section id="setup" class="mb-16">
       <div class="p-6 sm:p-8 rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-950/20 via-slate-900/60 to-slate-950 backdrop-blur-md relative overflow-hidden">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div class="space-y-3 max-w-2xl">
-            <div class="flex items-center gap-2.5">
-              <span class="px-2.5 py-0.5 text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">ШАГ 0 &bull; ОБЯЗАТЕЛЬНО ДЛЯ НОВЫХ ПК</span>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span class="px-2.5 py-0.5 text-xs font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded">ШАГ 0 &bull; BOOTSTRAP &amp; LAUNCHER v5.0</span>
               <span class="text-xs font-mono text-slate-400">sentinel_setup.bat</span>
             </div>
-            <h2 class="text-xl sm:text-2xl font-bold text-white font-mono">Автоматический установщик Python и библиотек</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-white font-mono">Центр развертывания, проверки Python и Лаунчер</h2>
             <p class="text-sm text-slate-300 leading-relaxed">
-              Наши программы написаны на Python с расширением <code class="text-amber-300 font-mono bg-slate-800 px-1.5 py-0.5 rounded">.pyw</code> (работают без черного окна консоли). Если у вас на компьютере еще нет Python или программы не открываются — скачайте и запустите этот скрипт.
+              Скрипт с многоцветным ANSI-интерфейсом. Сам проверяет систему (обходя пустую заглушку Microsoft Store), при необходимости скачивает и тихо ставит <strong>Python 3.11.9 (x64)</strong>, проверяет библиотеки и открывает интерактивное меню управления модулями.
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 text-xs font-mono text-slate-400">
-              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Проверяет наличие Python >= 3.10</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Сам качает и ставит Python 3.11 (x64)</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Автоматически прописывает системный PATH</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Ставит psutil, pillow, pystray и pynput</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Защита от заглушки WindowsApps</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Проверка Tcl/Tk, psutil, Pillow, pystray, pynput</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Запуск обоих модулей в 1 клик (клавиша [1])</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-400">✓</span> Генерация ярлыков на Рабочий стол (клавиша [4])</div>
             </div>
           </div>
 
@@ -146,8 +161,8 @@
     <section id="projects" class="space-y-12">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div>
-          <h2 class="text-2xl font-bold text-white font-mono">Флагманские приложения</h2>
-          <p class="text-xs text-slate-400 mt-1">Полные версии без урезанного функционала. Прямая загрузка из репозитория.</p>
+          <h2 class="text-2xl font-bold text-white font-mono">Флагманские модули экосистемы</h2>
+          <p class="text-xs text-slate-400 mt-1">Актуальные релизы с сохранением настроек в JSON и полной потокобезопасностью.</p>
         </div>
         <div class="flex gap-2 font-mono text-xs">
           <button onclick="filterCards('all')" id="btn-all" class="px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-400 border border-sky-500/40">Все (2)</button>
@@ -156,22 +171,20 @@
         </div>
       </div>
 
-      <!-- ПРОЕКТ 1: SENTINEL OS CORE -->
+      <!-- ПРОЕКТ 1: SENTINEL OS CORE v5.0 -->
       <article data-category="core" class="project-card cyber-card rounded-2xl p-6 sm:p-8">
-        <!-- Верхняя шапка карточки -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
           <div>
             <div class="flex items-center gap-3 flex-wrap">
               <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-sky-500/10 text-sky-400 border border-sky-500/30">MODULE 01</span>
               <h3 class="text-2xl font-bold text-white font-mono">Sentinel OS Core</h3>
-              <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">v4.5 Production</span>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-950/50 px-2.5 py-0.5 rounded border border-emerald-500/30">v5.0 Production</span>
             </div>
             <p class="text-slate-300 text-sm sm:text-base mt-2.5 leading-relaxed max-w-3xl">
-              Интеллектуальный комбайн для автоматической сортировки папки «Загрузки», очистки дубликатов по хеш-суммам MD5, мониторинга железа и проверки безопасности Windows.
+              Автоматический сортировщик загрузок с точным трекингом буфера «Недавнее», двухэтапным дедупликатором <strong>Smart MD5</strong>, живыми датчиками CPU/RAM в шапке, антивирусным аудитом и горячим рестартом видеодрайвера.
             </p>
           </div>
 
-          <!-- Кнопки скачивания с GitHub -->
           <div class="flex sm:flex-row lg:flex-col gap-2.5 shrink-0">
             <a href="./file_sorter.pyw" download="file_sorter.pyw" class="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-5 py-3 rounded-xl transition-all shadow-lg shadow-sky-950">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -186,101 +199,80 @@
         <!-- Главные фичи в 3 колонки -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 py-6">
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">⏳ Умный буфер «Недавнее»</div>
+            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">⏳ Честный буфер «Недавнее»</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Новые скачанные файлы не разлетаются по папкам сразу, чтобы вы их не теряли. Они помещаются в папку <strong>«Недавнее»</strong> на 90 минут (время настраивается от 0 до 3 часов). Только когда буфер истекает, файл уходит в свою категорию и подпапку по расширению.
+              Фиксирует точный таймстамп попадания файла в папку <strong>«Недавнее»</strong> (не путаясь в старых датах модификации архивов). Поддерживает 8 категорий, включая <strong>Проекты FL Studio и Графику</strong> (<code class="text-sky-300">.flp, .fst, .psd, .kra, .svg</code>).
             </p>
           </div>
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">🛡 Антивирусный аудит (AV)</div>
+            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">🎯 Smart MD5 &amp; Рестарт GPU</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Пятиступенчатая проверка системы: анализирует файл <code class="text-sky-300">hosts</code> на блокировку антивирусов, сканирует ветки автозапуска в реестре, проверяет оперативную память на процессы из папок Temp/AppData и ищет скрытые вредоносные паттерны в скриптах.
+              Сначала группирует файлы по байтовому размеру и считает MD5 только при совпадении веса — проверка огромных папок идет мгновенно, игнорируя карантин. Кнопка <strong>Сброс GPU</strong> посылает нативный сигнал <code class="text-sky-300">Win+Ctrl+Shift+B</code>.
             </p>
           </div>
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">🎯 Дедупликатор MD5 & Железо</div>
+            <div class="text-sky-400 font-mono text-xs font-bold uppercase mb-1.5">🛡 Сигнатурный AV и Терминал</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Побайтово вычисляет криптографический хеш MD5 каждого файла и удаляет 100% копии, даже если у них разные имена. Включает окно телеметрии ПК (модель ЦП, ядра, загрузка ОЗУ, диски и видеокарта) и быстрый сброс видеодрайвера.
+              Проверяет <code class="text-sky-300">hosts</code>, автозапуск реестра, процессы из Temp, двойные расширения и RTLO-символы. Цветовой терминал поддерживает историю команд на стрелки <code class="text-sky-300">&uarr;/&darr;</code> и автодополнение по <code class="text-sky-300">Tab</code>.
             </p>
           </div>
         </div>
 
-        <!-- Подробное руководство (открыто и наглядно) -->
+        <!-- Подробное руководство -->
         <div class="bg-[#060a11] border border-slate-800/90 rounded-xl p-5 sm:p-6 space-y-6">
           <div class="flex items-center justify-between cursor-pointer" onclick="toggleDetails('details-core', 'arrow-core')">
             <h4 class="font-mono font-bold text-sm text-sky-400 flex items-center gap-2">
-              <span>📖 ПОДРОБНАЯ ИНСТРУКЦИЯ: КАК ПОЛЬЗОВАТЬСЯ И ВСЕ КОМАНДЫ</span>
+              <span>📖 ПОДРОБНАЯ ИНСТРУКЦИЯ: КАТЕГОРИИ v5.0 И КОМАНДЫ ТЕРМИНАЛА</span>
             </h4>
             <span id="arrow-core" class="font-mono text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">Свернуть &uarr;</span>
           </div>
 
           <div id="details-core" class="space-y-6 pt-2 border-t border-slate-800/60 text-xs sm:text-sm text-slate-300">
-            <!-- Категории сортировки -->
             <div>
-              <h5 class="text-white font-mono font-semibold mb-2">1. Куда и как раскладываются файлы?</h5>
-              <p class="text-slate-400 text-xs mb-3">
-                Программа автоматически игнорирует недокачанные файлы браузеров (<code class="text-slate-200">.crdownload</code>, <code class="text-slate-200">.part</code>, <code class="text-slate-200">.tmp</code>), чтобы не повредить загрузку. Готовые файлы распределяются в <code class="text-sky-300">C:\Users\Имя\Downloads</code> по структуре <code class="text-sky-300">Категория / Расширение / Файл</code>:
-              </p>
+              <h5 class="text-white font-mono font-semibold mb-2">1. Обновленная матрица категорий (v5.0)</h5>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Аудио:</span> mp3, wav, flac, ogg</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Архивы:</span> zip, rar, 7z, iso, torrent</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Картинки:</span> png, jpg, webp, psd, svg</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Аудио и Сэмплы:</span> mp3, wav, flac, ogg, m4a</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-purple-400">FL и Графика:</span> flp, fst, fsc, psd, kra, svg</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Архивы и Образы:</span> zip, rar, 7z, iso, torrent</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Изображения:</span> jpg, png, webp, gif, ico</div>
                 <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Видео:</span> mp4, mkv, avi, mov, webm</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Софт:</span> exe, msi, bat, py, apk</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Документы:</span> pdf, docx, xlsx, txt, pptx</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Minecraft:</span> .jar (моды в отдельную папку)</div>
-                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Разное:</span> все остальные форматы</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Программы:</span> exe, msi, bat, ps1, py, apk</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-sky-400">Документы:</span> pdf, docx, xlsx, pptx, csv</div>
+                <div class="bg-slate-900/70 p-2.5 rounded border border-slate-800"><span class="text-emerald-400">Minecraft:</span> jar, mrpack, mcpack</div>
               </div>
             </div>
 
-            <!-- Описание кнопок интерфейса -->
             <div>
-              <h5 class="text-white font-mono font-semibold mb-2">2. Кнопки управления в верхней панели</h5>
-              <ul class="space-y-1.5 text-xs text-slate-300 list-disc pl-5">
-                <li><strong>⚡ Сортировать:</strong> принудительно запускает проверку папки Загрузок прямо сейчас, не дожидаясь таймера.</li>
-                <li><strong>🔨 Внутри папок:</strong> наводит порядок внутри уже созданных категорий (раскладывает файлы по подпапкам их расширений).</li>
-                <li><strong>🎯 Удалить дубли (MD5):</strong> сканирует всю папку Загрузок, сравнивает файлы по хешу и удаляет лишние дубликаты, показывая сколько мегабайт освобождено.</li>
-                <li><strong>🛡 Антивирус OS:</strong> запускает глубокое сканирование. Если находит подозрительный файл (например, двойное расширение <code class="text-rose-400">.pdf.exe</code> или скрытый символ разворота текста), предлагает изолировать его в папку <code class="text-amber-300">Quarantine</code>.</li>
-                <li><strong>🧹 Очистить Temp:</strong> безопасно вычищает системную папку временных файлов Windows (<code class="text-slate-400">AppData\Local\Temp</code>).</li>
-                <li><strong>🚀 Автозапуск [ВКЛ/ВЫКЛ]:</strong> одним кликом добавляет или удаляет программу из автозагрузки Windows в реестре.</li>
-              </ul>
-            </div>
-
-            <!-- Встроенный терминал -->
-            <div>
-              <h5 class="text-white font-mono font-semibold mb-2">3. Команды встроенного зеленого терминала (внизу окна)</h5>
-              <p class="text-xs text-slate-400 mb-2">В строку <code class="text-emerald-400 font-mono">Sentinel:~$</code> можно вводить как внутренние команды программы, так и любые системные команды Windows (например, <code class="text-slate-200">ipconfig</code> или <code class="text-slate-200">ping</code>):</p>
+              <h5 class="text-white font-mono font-semibold mb-2">2. Команды консоли <code class="text-emerald-400">Operator@Sentinel:~$</code></h5>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-xs bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                <div><span class="text-emerald-400">help</span> — список всех доступных команд</div>
-                <div><span class="text-emerald-400">scan</span> — мгновенная проверка папки Загрузок</div>
-                <div><span class="text-emerald-400">sort</span> — глубокая сортировка внутри подпапок</div>
-                <div><span class="text-emerald-400">antivirus</span> — запуск сканера безопасности</div>
-                <div><span class="text-emerald-400">dups</span> — запуск поиска дубликатов по MD5</div>
-                <div><span class="text-emerald-400">specs</span> — открыть окно телеметрии железа</div>
-                <div><span class="text-emerald-400">relax</span> — открыть пасхалку «Зона Спокойствия»</div>
-                <div><span class="text-emerald-400">matrix / operator / rats</span> — секретные протоколы</div>
+                <div><span class="text-emerald-400">scan / sort</span> — мгновенный цикл или глубокая сортировка папок</div>
+                <div><span class="text-emerald-400">dups</span> — двухэтапная очистка дубликатов Smart MD5</div>
+                <div><span class="text-emerald-400">antivirus</span> — полный аудит памяти, реестра, hosts и скриптов</div>
+                <div><span class="text-emerald-400">gpu</span> — аппаратный перезапуск видеодрайвера (Win+Ctrl+Shift+B)</div>
+                <div><span class="text-emerald-400">specs</span> — окно детальной телеметрии ЦП, ОЗУ, дисков и мониторов</div>
+                <div><span class="text-emerald-400">relax</span> — анимированная арт-сцена с облаками и рекой</div>
+                <div><span class="text-emerald-400">clean / cls</span> — очистка системного кэша Temp / экрана консоли</div>
+                <div><span class="text-purple-400">operator / rats / bioshock / fl</span> — пасхальные протоколы</div>
               </div>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- ПРОЕКТ 2: FOCUS SHADE MATRIX -->
+      <!-- ПРОЕКТ 2: FOCUS SHADE MATRIX v8.0 -->
       <article data-category="display" class="project-card cyber-card cyber-card-green rounded-2xl p-6 sm:p-8">
-        <!-- Верхняя шапка карточки -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
           <div>
             <div class="flex items-center gap-3 flex-wrap">
               <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">MODULE 02</span>
               <h3 class="text-2xl font-bold text-white font-mono">Sentinel :: Focus Shade Matrix</h3>
-              <span class="text-xs font-mono text-slate-400 bg-slate-900 px-2.5 py-0.5 rounded border border-slate-800">v7 CyberDeck</span>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-950/50 px-2.5 py-0.5 rounded border border-emerald-500/30">v8.0 Operator Edition</span>
             </div>
             <p class="text-slate-300 text-sm sm:text-base mt-2.5 leading-relaxed max-w-3xl">
-              Профессиональная утилита для владельцев 2, 3 и более мониторов. Автоматически приглушает яркость неактивных экранов, оставляя свет только там, где вы сейчас работаете или играете.
+              Матрица управления подсветкой для конфигураций из 2, 3 и более мониторов. Плавное кинематографичное затухание <strong>60 FPS Smooth Fade</strong>, индивидуальная блокировка экранов по ПКМ, цветовые фильтры защиты зрения и удержание поверх полноэкранных игр.
             </p>
           </div>
 
-          <!-- Кнопки скачивания с GitHub -->
           <div class="flex sm:flex-row lg:flex-col gap-2.5 shrink-0">
             <a href="./sentinel_dimmer.pyw" download="sentinel_dimmer.pyw" class="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-5 py-3 rounded-xl transition-all shadow-lg shadow-emerald-950">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -295,21 +287,21 @@
         <!-- Главные фичи в 3 колонки -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 py-6">
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">🖱 Следование за курсором</div>
+            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">🎬 60 FPS Smooth Fade &amp; Фильтры</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              В режиме <strong>Strict Follow</strong> программа отслеживает координаты мыши с частотой 25 раз в секунду. Как только вы переводите курсор на соседний монитор — он мгновенно становится ярким, а предыдущий плавно затемняется.
+              Никаких резких вспышек при переводе мыши: прозрачность плавно интерполируется. Доступны 4 фильтра: <strong>Pitch Black</strong>, <strong>Eye Care (Тёплый янтарь)</strong> для ночной работы, <strong>Cyber Midnight</strong> и <strong>Matrix Tint</strong>.
             </p>
           </div>
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">👻 Прозрачность для кликов</div>
+            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">🖱 Интерактивная схема (ЛКМ / ПКМ / Колесо)</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Оверлеи создаются через низкоуровневые флаги WinAPI (<code class="text-emerald-300">WS_EX_TRANSPARENT</code> и <code class="text-emerald-300">WS_EX_LAYERED</code>). Затемнение вообще не мешает нажимать на окна под ним и не сворачивает полноэкранные игры.
+              Карта показывает реальное разрешение и герцовку (<code class="text-emerald-300">Hz</code>) каждого экрана. <strong>ЛКМ</strong> назначает основной монитор, <strong>ПКМ</strong> переключает режим (<code class="text-purple-300">Авто / Всегда темный / Всегда яркий</code>), а <strong>колесо мыши</strong> меняет процент затемнения.
             </p>
           </div>
           <div class="bg-slate-900/50 border border-slate-800/80 p-4 rounded-xl">
-            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">⌨ Любые бинды (Мышь + Клава)</div>
+            <div class="text-emerald-400 font-mono text-xs font-bold uppercase mb-1.5">🛡 Anti-Flicker Бинды &amp; Z-Watchdog</div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Включать и выключать затемнение можно из любой игры или программы. Поддерживаются как одиночные клавиши (по умолчанию <strong>F9</strong>), так и связки вроде <code class="text-emerald-300">Ctrl + Shift + X</code> или боковые кнопки мыши <code class="text-emerald-300">Mouse4</code> / <code class="text-emerald-300">Mouse5</code>.
+              Защита от автоповтора при зажатии клавиши бинда (<code class="text-emerald-300">F9</code>, комбинации или <code class="text-emerald-300">Mouse4/Mouse5</code>). Сторожевой таймер удерживает оверлеи поверх полноэкранных игр и Wallpaper Engine без перехвата фокуса.
             </p>
           </div>
         </div>
@@ -318,40 +310,105 @@
         <div class="bg-[#060a11] border border-slate-800/90 rounded-xl p-5 sm:p-6 space-y-6">
           <div class="flex items-center justify-between cursor-pointer" onclick="toggleDetails('details-focus', 'arrow-focus')">
             <h4 class="font-mono font-bold text-sm text-emerald-400 flex items-center gap-2">
-              <span>📖 ПОДРОБНАЯ ИНСТРУКЦИЯ: НАСТРОЙКА МОНИТОРОВ И БИНДОВ</span>
+              <span>📖 ПОДРОБНАЯ ИНСТРУКЦИЯ: УПРАВЛЕНИЕ МАТРИЦЕЙ МОНИТОРОВ v8.0</span>
             </h4>
             <span id="arrow-focus" class="font-mono text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded border border-slate-800">Свернуть &uarr;</span>
           </div>
 
           <div id="details-focus" class="space-y-5 pt-2 border-t border-slate-800/60 text-xs sm:text-sm text-slate-300">
             <div>
-              <h5 class="text-white font-mono font-semibold mb-2">1. Два режима работы: какой выбрать?</h5>
+              <h5 class="text-white font-mono font-semibold mb-2">1. Как управлять каждым монитором отдельно?</h5>
               <ul class="space-y-2 text-xs text-slate-300 list-disc pl-5">
-                <li>
-                  <strong>Режим №1 — «Следовать за мышью» (галочка включена по умолчанию):</strong> Идеально для повседневной работы на 2–3 экранах. Светлым остается только тот монитор, на котором сейчас находится ваш курсор. Остальные мониторы приглушены и не бьют по глазам в темноте.
+                <li><strong>Левый клик (ЛКМ) по монитору на схеме:</strong> делает этот монитор <code class="text-sky-400">PRIMARY (Основным)</code>. Если отключить галочку «Следовать за курсором», светлым останется только он.</li>
+                <li><strong>Правый клик (ПКМ) по монитору на схеме:</strong> включает индивидуальную фиксацию для конкретного дисплея:
+                  <span class="text-slate-400">Автоматический</span> &rarr;
+                  <span class="text-purple-400 font-mono">🔒 ВСЕГДА ТЕМНЫЙ</span> (экран не загорается даже при наведении мыши) &rarr;
+                  <span class="text-emerald-400 font-mono">☀ ВСЕГДА ЯРКИЙ</span> (экран никогда не затемняется — удобно для вывода OBS, схем или чата на 3-й монитор).
                 </li>
-                <li>
-                  <strong>Режим №2 — «Фиксированный основной монитор» (галочка снята):</strong> Идеально для запуска игры или просмотра фильма на одном экране. Вы просто кликаете левой кнопкой мыши по нужному монитору на интерактивной карте в программе — он назначается <code class="text-sky-400">[ ОСНОВНЫМ ]</code> и всегда остается ярким, даже если увести мышь на соседний экран.
-                </li>
+                <li><strong>Колесо мыши над схемой + Пресеты:</strong> крутите колесо для плавной регулировки с шагом 5% или используйте кнопки быстрого доступа <code class="text-sky-300">50% | 75% | 90% | Blackout (100%)</code>. Все настройки автоматически сохраняются в профиль.</li>
               </ul>
-            </div>
-
-            <div>
-              <h5 class="text-white font-mono font-semibold mb-2">2. Как поменять горячую клавишу и настроить ползунок?</h5>
-              <ol class="space-y-1.5 text-xs text-slate-300 list-decimal pl-5">
-                <li>Для включения или отключения затемнения нажмите синюю кнопку <strong>«⚡ Включить Фокус»</strong> или клавишу <strong>F9</strong>.</li>
-                <li>Чтобы сменить клавишу: нажмите на желтую кнопку <strong>«⌨ БИНД: F9»</strong> — она загорится голубым (<code class="text-sky-300">[ Зажмите бинд... ]</code>). Зажмите любую клавишу, комбинацию клавиш или боковую кнопку мыши и отпустите. Бинд сразу сохранится.</li>
-                <li>Ползунок <strong>«ЗАТЕМНЕНИЕ»</strong> регулирует плотность черного фона от <strong>20%</strong> (легкая тонировка) до <strong>100%</strong> (полное отключение подсветки пикселей, как на OLED).</li>
-                <li>Кнопка <strong>«⟳ Обновить сетку»</strong> пересканирует дисплеи, если вы подключили новый монитор или телевизор по HDMI/DisplayPort.</li>
-              </ol>
             </div>
           </div>
         </div>
       </article>
-
     </section>
 
-    <!-- Блок FAQ (Частые вопросы при запуске) -->
+    <!-- ИНТЕРАКТИВНОЕ LIVE-ПРЕВЬЮ ПРЯМО В БРАУЗЕРЕ -->
+    <section id="interactive-demo" class="mt-16 pt-12 border-t border-slate-800/80">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+        <div>
+          <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">● Интерактивный веб-стенд</span>
+          <h3 class="text-xl font-bold text-white font-mono mt-1">Попробуйте логику Focus Matrix &amp; Терминала прямо в браузере</h3>
+        </div>
+        <span class="text-xs font-mono text-slate-400">ЛКМ = Курсор/Основной &bull; ПКМ = Блокировка экрана</span>
+      </div>
+
+      <div class="cyber-card rounded-2xl p-6 space-y-5 font-mono">
+        <!-- Панель управления демо -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
+          <div class="flex items-center gap-3">
+            <button id="demo-toggle-btn" onclick="toggleDemoShade()" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all">
+              ⚡ Фокус: ВКЛ
+            </button>
+            <select id="demo-tint" onchange="updateDemoMonitors()" class="bg-slate-900 border border-slate-700 text-sky-400 text-xs px-3 py-2 rounded-lg">
+              <option value="rgba(0,0,0,0.82)">Фильтр: Pitch Black (80%)</option>
+              <option value="rgba(35,17,0,0.85)">Фильтр: Eye Care (Янтарь)</option>
+              <option value="rgba(2,10,30,0.85)">Фильтр: Cyber Midnight</option>
+              <option value="rgba(2,24,12,0.85)">Фильтр: Matrix Emerald</option>
+            </select>
+          </div>
+          <div class="text-xs text-slate-400">
+            Кликните <span class="text-emerald-400">ЛКМ</span> для перевода фокуса или <span class="text-purple-400">ПКМ</span> для смены режима монитора
+          </div>
+        </div>
+
+        <!-- 3 виртуальных монитора -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 select-none" oncontextmenu="return false;">
+          <div id="demo-mon-0" onclick="setDemoActive(0)" oncontextmenu="cycleDemoLock(0); return false;" class="relative h-36 rounded-xl border-2 border-slate-700 bg-slate-900/90 p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 overflow-hidden">
+            <div class="flex justify-between text-[11px] z-10">
+              <span class="text-slate-400">#1 :: Display-Left</span>
+              <span class="text-sky-400">1920x1080 @ 60Hz</span>
+            </div>
+            <div id="demo-tag-0" class="text-center font-bold text-xs z-10 text-amber-400">[ SHADE ACTIVE ]</div>
+            <div class="text-[10px] text-slate-500 text-center z-10">ЛКМ: Фокус | ПКМ: Режим</div>
+            <div id="demo-overlay-0" class="absolute inset-0 transition-opacity duration-300 pointer-events-none" style="background: rgba(0,0,0,0.82); opacity: 1;"></div>
+          </div>
+
+          <div id="demo-mon-1" onclick="setDemoActive(1)" oncontextmenu="cycleDemoLock(1); return false;" class="relative h-36 rounded-xl border-2 border-emerald-400 bg-slate-900/90 p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 overflow-hidden">
+            <div class="flex justify-between text-[11px] z-10">
+              <span class="text-white font-bold">#2 :: Digma 22P201F [PRIMARY]</span>
+              <span class="text-sky-400">1920x1080 @ 75Hz</span>
+            </div>
+            <div id="demo-tag-1" class="text-center font-bold text-xs z-10 text-emerald-400">● АКТИВЕН [КУРСОР ЗДЕСЬ]</div>
+            <div class="text-[10px] text-slate-500 text-center z-10">ЛКМ: Фокус | ПКМ: Режим</div>
+            <div id="demo-overlay-1" class="absolute inset-0 transition-opacity duration-300 pointer-events-none" style="background: rgba(0,0,0,0.82); opacity: 0;"></div>
+          </div>
+
+          <div id="demo-mon-2" onclick="setDemoActive(2)" oncontextmenu="cycleDemoLock(2); return false;" class="relative h-36 rounded-xl border-2 border-slate-700 bg-slate-900/90 p-4 flex flex-col justify-between cursor-pointer transition-all duration-300 overflow-hidden">
+            <div class="flex justify-between text-[11px] z-10">
+              <span class="text-slate-400">#3 :: Display-Right</span>
+              <span class="text-sky-400">1920x1080 @ 60Hz</span>
+            </div>
+            <div id="demo-tag-2" class="text-center font-bold text-xs z-10 text-amber-400">[ SHADE ACTIVE ]</div>
+            <div class="text-[10px] text-slate-500 text-center z-10">ЛКМ: Фокус | ПКМ: Режим</div>
+            <div id="demo-overlay-2" class="absolute inset-0 transition-opacity duration-300 pointer-events-none" style="background: rgba(0,0,0,0.82); opacity: 1;"></div>
+          </div>
+        </div>
+
+        <!-- Мини-терминал -->
+        <div class="bg-[#03060a] border border-emerald-900/60 rounded-xl p-3.5 text-xs">
+          <div id="demo-log" class="h-24 overflow-y-auto space-y-1 text-emerald-400 mb-2 pr-2">
+            <div><span class="text-slate-500">[SYSTEM]</span> Интерактивный стенд Sentinel OS готов. Введите <span class="text-sky-400">help</span>, <span class="text-purple-400">operator</span>, <span class="text-purple-400">rats</span>, <span class="text-purple-400">bioshock</span> или <span class="text-sky-400">gpu</span>.</div>
+          </div>
+          <div class="flex items-center bg-[#06120d] px-3 py-1.5 rounded border border-emerald-800/50">
+            <span class="text-emerald-400 font-bold mr-2">Operator@Sentinel:~$</span>
+            <input id="demo-cmd-input" type="text" placeholder="Введите команду и нажмите Enter..." onkeydown="if(event.key==='Enter') runDemoCmd()" class="bg-transparent text-emerald-200 focus:outline-none w-full" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блок FAQ -->
     <section class="mt-16 pt-12 border-t border-slate-800/80">
       <h3 class="text-lg font-bold text-white font-mono mb-6">Частые вопросы по установке и запуску</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs leading-relaxed">
@@ -362,9 +419,9 @@
           </p>
         </div>
         <div class="bg-slate-900/40 border border-slate-800 p-5 rounded-xl">
-          <div class="font-mono font-bold text-white text-sm mb-2">Что делать, если файл открывается в Блокноте?</div>
+          <div class="font-mono font-bold text-white text-sm mb-2">Как запустить оба модуля сразу и создать ярлыки?</div>
           <p class="text-slate-400">
-            Значит, на компьютере еще не установлен Python или не привязаны ассоциации файлов. Скачайте сверху <strong>sentinel_setup.bat</strong> и запустите его — он сам скачает Python и настроит систему. Либо кликните правой кнопкой по файлу &rarr; «Открыть с помощью» &rarr; выберите <strong>Python</strong>.
+            Положите все три скачанных файла в одну папку и запустите <strong>sentinel_setup.bat</strong>. В открывшемся меню нажмите клавишу <code class="text-amber-300">[1]</code> для одновременного фонового запуска обоих модулей или <code class="text-amber-300">[4]</code> для автоматического создания ярлыков на Рабочем столе.
           </p>
         </div>
       </div>
@@ -373,20 +430,35 @@
     <!-- Подвал -->
     <footer class="mt-16 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-slate-500 gap-4">
       <div class="flex items-center gap-2">
-        <span class="text-sky-400 font-bold">Operator</span>
+        <span class="text-sky-400 font-bold">Operator (vladosic15)</span>
         <span>&bull;</span>
         <span>Sentinel OS Architecture &bull; 2026</span>
       </div>
       <div class="flex gap-4">
         <a href="https://t.me/Tony_Versety" target="_blank" class="hover:text-sky-400 transition-colors">Telegram: @Tony_Versety</a>
         <span>|</span>
-        <a href="https://github.com/vladosic15-cpu" target="_blank" class="hover:text-white transition-colors">GitHub</a>
+        <a href="https://github.com/vladosic15-cpu/vladosic15-cpu.github.io" target="_blank" class="hover:text-white transition-colors">GitHub Repository</a>
       </div>
     </footer>
 
   </main>
 
   <script>
+    // Скачивание всех 3 файлов комплектом
+    function downloadAllBundle() {
+      const files = ['sentinel_setup.bat', 'file_sorter.pyw', 'sentinel_dimmer.pyw'];
+      files.forEach((file, index) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = './' + file;
+          a.download = file;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, index * 350);
+      });
+    }
+
     // Сворачивание / разворачивание инструкций
     function toggleDetails(blockId, arrowId) {
       const block = document.getElementById(blockId);
@@ -425,6 +497,14 @@
         }
       });
     }
-  </script>
-</body>
-</html>
+
+    // Логика интерактивного демо-стенда
+    let demoShadeEnabled = true;
+    let demoActiveMon = 1;
+    let demoLocks = [0, 0, 0]; // 0 = Auto, 1 = Always Dark, 2 = Always Lit
+
+    function appendDemoLog(msg, colorClass = 'text-emerald-400') {
+      const log = document.getElementById('demo-log');
+      const now = new Date().toTimeString().split(' ')[0];
+      const div = document.createElement('div');
+      div.innerHTML = `<span class="text-slate-500

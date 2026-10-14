@@ -29,16 +29,13 @@
       background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
       background-size: 24px 24px;
     }
-    pre code {
-      font-family: 'JetBrains Mono', monospace;
-    }
   </style>
 </head>
 <body class="font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-black grid-pattern">
 
   <main class="max-w-4xl mx-auto px-6 py-12 sm:py-20">
     
-    <!-- Верхняя шапка -->
+    <!-- Шапка -->
     <header class="mb-14 border-b border-slate-800/80 pb-10">
       <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white font-mono flex items-center gap-3">
@@ -85,7 +82,6 @@
           Автономная система умной сортировки папки <code class="text-sky-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Downloads</code> с временным буфером «Недавнее» (90 мин), глубокой каталогизацией подпапок, проверкой целостности скачиваний, вычислением MD5-хешей для мгновенного удаления дубликатов и встроенным AV-сканером угроз реестра и памяти.
         </p>
 
-        <!-- Теги -->
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Python 3.10+</span>
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Tkinter GUI</span>
@@ -94,16 +90,15 @@
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">System AV Core</span>
         </div>
 
-        <!-- Кнопки действий -->
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
           <button onclick="openModal('modal-core')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
             📖 Инструкция и разбор &rarr;
           </button>
           
-          <button onclick="downloadSentinelCore()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950">
+          <a href="./file_sorter.pyw" download="file_sorter.pyw" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            Скачать sentinel_os.py
-          </button>
+            Скачать file_sorter.pyw
+          </a>
         </div>
       </article>
 
@@ -123,7 +118,6 @@
           Многомониторный оверлей фокуса на чистых Windows API. Автоматически перехватывает координаты курсора мыши и затемняет неактивные мониторы без потери фокуса ввода. Поддерживает бинды горячих клавиш (включая <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse4</code> / <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse5</code>), автозапуск в трей и полное аппаратное ускорение без мерцания.
         </p>
 
-        <!-- Теги -->
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Multi-Monitor WinAPI</span>
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Layered Click-Through</span>
@@ -131,16 +125,15 @@
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">System Tray</span>
         </div>
 
-        <!-- Кнопки действий -->
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
           <button onclick="openModal('modal-focus')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
             📖 Инструкция и разбор &rarr;
           </button>
           
-          <button onclick="downloadFocusShade()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950">
+          <a href="./sentinel_dimmer.pyw" download="sentinel_dimmer.pyw" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            Скачать focus_shade.pyw
-          </button>
+            Скачать sentinel_dimmer.pyw
+          </a>
         </div>
       </article>
 
@@ -153,7 +146,7 @@
     </footer>
   </main>
 
-  <!-- МОДАЛЬНОЕ ОКНО 1: SENTINEL CORE -->
+  <!-- МОДАЛКА 1 -->
   <div id="modal-core" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-[#0b1017] border border-slate-700 w-full max-w-3xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
@@ -165,47 +158,33 @@
 
       <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-300 leading-relaxed font-sans">
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">1. Что делает эта утилита?</h4>
-          <p>
-            Sentinel OS Core работает в фоне или полноэкранном кибер-интерфейсе. Приложение непрерывно мониторит системную папку Загрузок (<code class="font-mono text-xs text-sky-300">C:\Users\...\Downloads</code>), перекладывая только что скачанные файлы во временную буферную папку <strong>«Недавнее»</strong>. Спустя заданное время (по умолчанию 1.5 часа) файлы сортируются по категориям (Аудио, Архивы, Видео, Minecraft Моды, Софт и др.) и раскладываются по расширениям.
-          </p>
+          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">1. Назначение</h4>
+          <p>Sentinel OS Core держит в порядке директорию Загрузок (<code class="font-mono text-xs text-sky-300">Downloads</code>). Новые файлы попадают в буферную папку «Недавнее» на 90 минут, после чего автоматически раскладываются по категориям и типам расширений.</p>
         </div>
-
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">2. Ключевые возможности</h4>
+          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">2. Возможности</h4>
           <ul class="list-disc pl-5 space-y-1 text-slate-400">
-            <li><strong>Защита от повреждений:</strong> не трогает незавершённые загрузки браузера (.crdownload, .part, .tmp).</li>
-            <li><strong>Дедупликация MD5:</strong> находит идентичные файлы любого размера по хеш-сумме и очищает дубликаты.</li>
-            <li><strong>Sentinel-AV:</strong> проверяет файл hosts, ключи реестра автозапуска Windows, активные процессы в RAM и сигнатуры скриптов на наличие вредоносных команд (PowerShell hidden, shadow delete и др.).</li>
-            <li><strong>Аппаратная телеметрия:</strong> вывод характеристик ЦП, ядер, занятости ОЗУ и видеокарты.</li>
+            <li><strong>Удаление дубликатов:</strong> вычисляет точный MD5-хеш и стирает копии.</li>
+            <li><strong>Sentinel-AV:</strong> сканирует реестр Run, память и подозрительные скрипты на трояны/майнеры.</li>
+            <li><strong>Телеметрия железа:</strong> мониторинг ЦП, ОЗУ, дисков и видеоадаптера.</li>
           </ul>
         </div>
-
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">3. Установка и первый запуск</h4>
-          <div class="bg-slate-950 p-4 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400 space-y-1">
-            <p># 1. Убедитесь, что установлен Python 3.10+ с галочкой "Add python.exe to PATH"</p>
-            <p># 2. Необходимые библиотеки установятся автоматически при первом запуске (pystray, pillow, psutil)</p>
-            <p># 3. Запуск:</p>
-            <p class="text-white">python sentinel_os.py</p>
+          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">3. Запуск</h4>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400">
+            python file_sorter.pyw
           </div>
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">4. Команды встроенного терминала</h4>
-          <p class="text-xs text-slate-400">В нижней строке терминала поддерживаются команды: <code class="text-sky-300 font-mono">scan</code>, <code class="text-sky-300 font-mono">sort</code>, <code class="text-sky-300 font-mono">antivirus</code>, <code class="text-sky-300 font-mono">clean</code>, <code class="text-sky-300 font-mono">dups</code>, <code class="text-sky-300 font-mono">specs</code>, а также встроенные пасхалки.</p>
+          <p class="text-xs text-slate-400 mt-2">Зависимости (psutil, pillow, pystray) программа скачает сама при первом старте.</p>
         </div>
       </div>
 
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
-        <button onclick="closeModal('modal-core')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">
-          Закрыть
-        </button>
+        <button onclick="closeModal('modal-core')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
       </div>
     </div>
   </div>
 
-  <!-- МОДАЛЬНОЕ ОКНО 2: FOCUS SHADE -->
+  <!-- МОДАЛКА 2 -->
   <div id="modal-focus" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
     <div class="bg-[#0b1017] border border-slate-700 w-full max-w-3xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
@@ -217,603 +196,37 @@
 
       <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-300 leading-relaxed font-sans">
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">1. Назначение и суть</h4>
-          <p>
-            Focus Shade Matrix спроектирован для работы с конфигурациями из нескольких дисплеев. Он создаёт прозрачные системные оверлеи через WinAPI (<code class="font-mono text-xs text-emerald-300">WS_EX_TRANSPARENT | WS_EX_LAYERED</code>), которые пропускают через себя все клики мыши, но затемняют экраны, на которых сейчас нет внимания пользователя.
-          </p>
+          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">1. Назначение</h4>
+          <p>Многомониторный оверлей для систем с 2-3 и более экранами. Затемняет неактивные мониторы через WinAPI-слои без блокировки кликов.</p>
         </div>
-
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">2. Режимы работы</h4>
-          <ul class="list-disc pl-5 space-y-2 text-slate-400">
-            <li><strong>Следование за курсором (Strict Follow):</strong> Затемняются все мониторы, кроме того, на котором прямо сейчас находится курсор мыши. При переводе мыши на другой экран фокус плавно и мгновенно переключается.</li>
-            <li><strong>Фиксированный основной монитор:</strong> Можно кликнуть по любому монитору на интерактивной карте, чтобы он оставался ярким, а все остальные — затемненными.</li>
+          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">2. Управление</h4>
+          <ul class="list-disc pl-5 space-y-1 text-slate-400">
+            <li><strong>Следование за курсором:</strong> подсвечен только тот экран, где находится мышь.</li>
+            <li><strong>Горячая клавиша:</strong> по умолчанию <strong>F9</strong>. Можно переназначить на боковые кнопки мыши (Mouse4 / Mouse5) прямо в интерфейсе.</li>
           </ul>
         </div>
-
         <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">3. Управление биндами</h4>
-          <p class="text-slate-400">
-            По умолчанию быстрое включение и выключение затемнения назначено на клавишу <strong>F9</strong>. Чтобы изменить хоткей:
-          </p>
-          <ol class="list-decimal pl-5 space-y-1 text-slate-400 text-xs mt-1">
-            <li>Нажмите желтую кнопку <strong>«⌨ БИНД: ...»</strong> в окне программы.</li>
-            <li>Зажмите любую комбинацию на клавиатуре (например, <code class="font-mono text-emerald-300">Ctrl + Shift + X</code>) или боковые кнопки мыши (<code class="font-mono text-emerald-300">Mouse4</code> / <code class="font-mono text-emerald-300">Mouse5</code>).</li>
-            <li>Комбинация сохранится автоматически.</li>
-          </ol>
-        </div>
-
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">4. Запуск без консоли</h4>
-          <p class="text-slate-400">
-            Файл имеет расширение <code class="font-mono text-xs text-emerald-300">.pyw</code>, поэтому при запуске стандартное черное окно терминала Windows не появляется. Программа тихо сворачивается в системный трей возле часов.
-          </p>
+          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">3. Запуск</h4>
+          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400">
+            pythonw sentinel_dimmer.pyw
+          </div>
+          <p class="text-xs text-slate-400 mt-2">Запускается в фоне без окна консоли и прячется в системный трей.</p>
         </div>
       </div>
 
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
-        <button onclick="closeModal('modal-focus')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">
-          Закрыть
-        </button>
+        <button onclick="closeModal('modal-focus')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
       </div>
     </div>
   </div>
 
-  <!-- JS Логика для модалок и скачивания файлов -->
   <script>
     function openModal(id) {
       document.getElementById(id).classList.remove('hidden');
     }
     function closeModal(id) {
       document.getElementById(id).classList.add('hidden');
-    }
-
-    // Вспомогательная функция для генерации скачивания
-    function triggerDownload(fileName, textContent) {
-      const element = document.createElement('a');
-      const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-      element.href = URL.createObjectURL(blob);
-      element.download = fileName;
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-      URL.revokeObjectURL(element.href);
-    }
-
-    // Исходный код Sentinel Core
-    const CORE_SOURCE = `import os
-import sys
-import subprocess
-import shutil
-import time
-import threading
-import winreg
-import tempfile
-import hashlib
-import math
-import socket
-from datetime import datetime
-from pathlib import Path
-import tkinter as tk
-from tkinter import ttk, messagebox
-
-try:
-    import ctypes
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("Operator.SentinelOS.Core.4.5")
-except Exception:
-    pass
-
-SINGLE_INSTANCE_PORT = 49201
-try:
-    _instance_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    _instance_socket.bind(('127.0.0.1', SINGLE_INSTANCE_PORT))
-except OSError:
-    sys.exit(0)
-
-APP_NAME = "Sentinel OS"
-TARGET_DIR = Path.home() / "Downloads"
-RECENT_FOLDER_NAME = "Недавнее"
-
-CATEGORIES = {
-    "Аудио": [".mp3", ".wav", ".flac", ".ogg", ".mid", ".aac", ".m4a"],
-    "Архивы": [".zip", ".rar", ".7z", ".tar", ".gz", ".iso", ".torrent"],
-    "Изображения": [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".svg", ".ico", ".psd", ".kra"],
-    "Видео": [".mp4", ".mkv", ".avi", ".mov", ".webm", ".wmv"],
-    "Программы и Скрипты": [".exe", ".msi", ".msixbundle", ".bat", ".cmd", ".ps1", ".py", ".reg", ".apk"],
-    "Документы": [".pdf", ".docx", ".doc", ".txt", ".xlsx", ".xls", ".xlsm", ".pptx", ".csv", ".cer"],
-    "Моды Minecraft": [".jar"],
-}
-
-TEMP_EXTENSIONS = {".crdownload", ".part", ".tmp", ".download"}
-IGNORED_FILES = {"desktop.ini", "thumbs.db"}
-AUTORUN_REG_KEY = r"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-
-MALICIOUS_PATTERNS = [
-    b"powershell -w hidden",
-    b"powershell -windowstyle hidden",
-    b"downloadstring",
-    b"bitsadmin /transfer",
-    b"certutil -urlcache",
-    b"set-mppreference -disablerealtime",
-    b"vssadmin delete shadows",
-    b"reg add hkcu\\\\software\\\\microsoft\\\\windows\\\\currentversion\\\\run",
-    b"rundll32.exe javascript:",
-    b"invoke-webrequest -usebasicparsing",
-    b"invoke-expression"
-]
-
-def get_console_python_path() -> str:
-    cur = Path(sys.executable)
-    if cur.name.lower() == "pythonw.exe":
-        cand = cur.parent / "python.exe"
-        if cand.exists():
-            return str(cand)
-    return str(cur)
-
-def get_accurate_os_name() -> str:
-    try:
-        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion") as key:
-            prod_name, _ = winreg.QueryValueEx(key, "ProductName")
-            build_str, _ = winreg.QueryValueEx(key, "CurrentBuild")
-            build = int(build_str)
-            disp_ver = ""
-            try:
-                disp_ver, _ = winreg.QueryValueEx(key, "DisplayVersion")
-            except FileNotFoundError:
-                pass
-            if build >= 22000:
-                prod_name = prod_name.replace("Windows 10", "Windows 11")
-            ver_part = f" ({disp_ver})" if disp_ver else ""
-            return f"{prod_name}{ver_part} [Build {build}]"
-    except Exception:
-        build = sys.getwindowsversion().build
-        win_ver = "Windows 11" if build >= 22000 else "Windows 10"
-        return f"{win_ver} [Build {build}]"
-
-def get_cpu_brand_name() -> str:
-    try:
-        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0") as key:
-            name, _ = winreg.QueryValueEx(key, "ProcessorNameString")
-            return name.strip()
-    except Exception:
-        return os.environ.get("PROCESSOR_IDENTIFIER", "CPU")
-
-def generate_app_icon_file() -> str:
-    ico_path = os.path.join(tempfile.gettempdir(), "sentinel_badge.ico")
-    try:
-        from PIL import Image, ImageDraw
-        img = Image.new("RGBA", (64, 64), color=(0, 0, 0, 0))
-        d = ImageDraw.Draw(img)
-        d.polygon([(32, 4), (60, 18), (52, 54), (32, 62), (12, 54), (4, 18)], fill="#090d16", outline="#38bdf8", width=3)
-        d.polygon([(32, 14), (48, 22), (42, 46), (32, 52), (22, 46), (16, 22)], fill="#0284c7")
-        d.ellipse([(28, 28), (36, 36)], fill="#38bdf8", outline="#ffffff", width=1)
-        img.save(ico_path, format="ICO", sizes=[(64, 64), (32, 32), (16, 16)])
-        return ico_path
-    except Exception:
-        return ""
-
-class NatureRelaxWindow:
-    def __init__(self, parent):
-        self.win = tk.Toplevel(parent)
-        self.win.title("Sentinel OS — Зона Спокойствия")
-        self.win.geometry("660x490")
-        self.win.configure(bg="#070c12")
-        self.win.resizable(False, False)
-        self.win.attributes("-topmost", True)
-        canvas = tk.Canvas(self.win, width=660, height=490, highlightthickness=0)
-        canvas.pack(fill=tk.BOTH, expand=True)
-        canvas.create_rectangle(0, 0, 660, 260, fill="#38bdf8", outline="")
-        for cx, cy in [(140, 70), (170, 65), (200, 70), (450, 90), (480, 85), (510, 90)]:
-            canvas.create_oval(cx-25, cy-18, cx+25, cy+18, fill="#ffffff", outline="")
-        sx, sy, r = 85, 85, 38
-        for angle in range(0, 360, 30):
-            rad = math.radians(angle)
-            canvas.create_line(sx + math.cos(rad)*(r+4), sy + math.sin(rad)*(r+4),
-                               sx + math.cos(rad)*(r+22), sy + math.sin(rad)*(r+22), fill="#facc15", width=3)
-        canvas.create_oval(sx - r, sy - r, sx + r, sy + r, fill="#fde047", outline="#eab308", width=2)
-        canvas.create_oval(-80, 160, 420, 370, fill="#15803d", outline="")
-        canvas.create_oval(260, 170, 760, 380, fill="#166534", outline="")
-        canvas.create_rectangle(0, 250, 660, 490, fill="#22c55e", outline="")
-        river_points = [(300, 240), (340, 240), (390, 310), (440, 370), (430, 430), (390, 490),
-                        (290, 490), (320, 420), (310, 350), (270, 290)]
-        canvas.create_polygon(river_points, fill="#0284c7", outline="#38bdf8", width=2, smooth=True)
-        for fx, fy in [(60, 320), (120, 390), (190, 300), (230, 430), (530, 330), (590, 400), (490, 450)]:
-            canvas.create_oval(fx-4, fy-4, fx+4, fy+4, fill="#f43f5e", outline="")
-            canvas.create_oval(fx-1, fy-1, fx+1, fy+1, fill="#fef08a", outline="")
-        canvas.create_text(330, 465, text="✨ Всё в порядке. Рабочий стол чист ✨", fill="#ffffff", font=("Segoe UI", 11, "bold"))
-
-class HardwareDiagWindow:
-    def __init__(self, parent):
-        self.win = tk.Toplevel(parent)
-        self.win.title("Sentinel OS — Телеметрия Системы")
-        self.win.geometry("680x560")
-        self.win.configure(bg="#080a0c")
-        self.win.resizable(False, False)
-        self.win.attributes("-topmost", True)
-        header = tk.Frame(self.win, bg="#0f172a", padx=16, pady=12)
-        header.pack(fill=tk.X)
-        tk.Label(header, text="⚡ АППАРАТНАЯ ТЕЛЕМЕТРИЯ И РЕСУРСЫ", fg="#38bdf8", bg="#0f172a", font=("Consolas", 12, "bold")).pack(side=tk.LEFT)
-        self.text_box = tk.Text(self.win, bg="#050709", fg="#34d399", font=("Consolas", 11), relief="flat", padx=16, pady=14)
-        self.text_box.pack(fill=tk.BOTH, expand=True, padx=12, pady=12)
-        self._load_specs()
-
-    def _load_specs(self):
-        specs = []
-        specs.append(f"• Операционная система: {get_accurate_os_name()}")
-        specs.append(f"• Архитектура: {os.environ.get('PROCESSOR_ARCHITECTURE', 'AMD64')}")
-        try:
-            import psutil
-            cpu_name = get_cpu_brand_name()
-            cores = psutil.cpu_count(logical=False)
-            threads = psutil.cpu_count(logical=True)
-            usage = psutil.cpu_percent(interval=0.2)
-            specs.append(f"\\n[ ПРОЦЕССОР (CPU) ]")
-            specs.append(f"• Модель: {cpu_name}")
-            specs.append(f"• Ядра / Потоки: {cores}C / {threads}T | Нагрузка: {usage}%")
-            ram = psutil.virtual_memory()
-            specs.append(f"\\n[ ОПЕРАТИВНАЯ ПАМЯТЬ (RAM) ]")
-            specs.append(f"• Всего ОЗУ: {round(ram.total / (1024**3), 1)} GB")
-            specs.append(f"• Свободно: {round(ram.free / (1024**3), 1)} GB ({ram.percent}% занято)")
-            specs.append(f"\\n[ НАКОПИТЕЛИ И ДИСКИ ]")
-            for part in psutil.disk_partitions(all=False):
-                try:
-                    u = psutil.disk_usage(part.mountpoint)
-                    specs.append(f"• Диск {part.device} [{part.fstype}] -> Доступно: {u.free // (1024**3)} GB из {u.total // (1024**3)} GB ({u.percent}% занято)")
-                except PermissionError:
-                    continue
-        except ImportError:
-            specs.append("\\n[!] Модуль psutil обновляется...")
-        specs.append(f"\\n[ ВИДЕОКАРТА (GPU) ]")
-        try:
-            cmd = 'powershell "Get-CimInstance Win32_VideoController | Select-Object -ExpandProperty Name"'
-            gpu = subprocess.check_output(cmd, shell=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW).strip()
-            specs.append(f"• GPU: {gpu if gpu else 'Стандартный графический адаптер'}")
-        except Exception:
-            specs.append("• GPU: Информация недоступна")
-        self.text_box.delete("1.0", tk.END)
-        self.text_box.insert(tk.END, "\\n".join(specs))
-
-class SentinelOSApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title(APP_NAME)
-        self.root.state("zoomed")
-        self.root.minsize(980, 680)
-        self.root.configure(bg="#060b13")
-        self.is_running = True
-        self.check_interval_seconds = 60
-        self.recent_retention_seconds = 90 * 60
-        self.countdown = self.check_interval_seconds
-        self.total_sorted_counter = 0
-        self.tray_icon = None
-        self.pystray_ready = False
-        self.ico_path = ""
-        self.pulse_step = 0
-        self.is_busy = False
-        self.busy_pos = 0
-        self._init_theme()
-        self._build_gradient_background()
-        self._build_ui()
-        self._animate_pulse()
-        threading.Thread(target=self._bootstrap_environment, daemon=True).start()
-
-    def _init_theme(self):
-        style = ttk.Style()
-        style.theme_use("clam")
-        style.configure("Dark.TCombobox", fieldbackground="#131e2e", background="#0b1420", foreground="#38bdf8",
-                        darkcolor="#131e2e", lightcolor="#131e2e", selectbackground="#131e2e", selectforeground="#38bdf8",
-                        arrowcolor="#38bdf8", bordercolor="#223954")
-        self.root.option_add("*TCombobox*Listbox.background", "#0b1420")
-        self.root.option_add("*TCombobox*Listbox.foreground", "#38bdf8")
-
-    def _build_gradient_background(self):
-        self.bg_canvas = tk.Canvas(self.root, highlightthickness=0)
-        self.bg_canvas.place(x=0, y=0, relwidth=1, relheight=1)
-        self.root.bind("<Configure>", self._draw_gradient)
-
-    def _draw_gradient(self, event=None):
-        width = self.root.winfo_width()
-        height = self.root.winfo_height()
-        if width <= 1 or height <= 1: return
-        self.bg_canvas.delete("grad")
-        steps = 40
-        c1 = (5, 10, 18)
-        c2 = (17, 28, 45)
-        for i in range(steps):
-            r = int(c1[0] + (c2[0] - c1[0]) * (i / steps))
-            g = int(c1[1] + (c2[1] - c1[1]) * (i / steps))
-            b = int(c1[2] + (c2[2] - c1[2]) * (i / steps))
-            color = f"#{r:02x}{g:02x}{b:02x}"
-            y1 = int(i * (height / steps))
-            y2 = int((i + 1) * (height / steps))
-            self.bg_canvas.create_rectangle(0, y1, width, y2, fill=color, outline="", tags="grad")
-        self.bg_canvas.tag_lower("grad")
-
-    def _create_hover_btn(self, parent, text, bg, fg, hover_bg, cmd, padx=12, pady=6):
-        btn = tk.Button(parent, text=text, bg=bg, fg=fg, relief="flat", padx=padx, pady=pady,
-                        font=("Segoe UI", 9, "bold"), cursor="hand2", command=cmd)
-        btn.bind("<Enter>", lambda e: btn.config(bg=hover_bg))
-        btn.bind("<Leave>", lambda e: btn.config(bg=bg))
-        return btn
-
-    def _animate_pulse(self):
-        if self.is_running:
-            self.pulse_step = (self.pulse_step + 1) % 10
-            pulse_colors = ["#10b981", "#22c55e", "#4ade80", "#86efac", "#4ade80", "#22c55e", "#10b981", "#059669", "#047857", "#059669"]
-            self.lbl_status.config(fg=pulse_colors[self.pulse_step])
-        self.root.after(140, self._animate_pulse)
-
-    def _build_ui(self):
-        content = tk.Frame(self.root, bg="#060b13")
-        content.pack(fill=tk.BOTH, expand=True, padx=12, pady=8)
-        header = tk.Frame(content, bg="#0d1826", padx=18, pady=10, highlightthickness=1, highlightbackground="#1e344f")
-        header.pack(fill=tk.X, pady=(0, 4))
-        self.lbl_status = tk.Label(header, text="● SENTINEL ACTIVE", fg="#10b981", bg="#0d1826", font=("Consolas", 13, "bold"))
-        self.lbl_status.pack(side=tk.LEFT)
-        self.lbl_stats = tk.Label(header, text="Сортировано файлов: 0", fg="#cbd5e1", bg="#0d1826", font=("Segoe UI", 10, "bold"))
-        self.lbl_stats.pack(side=tk.LEFT, padx=30)
-        self.lbl_timer = tk.Label(header, text="Следующий цикл: 60 с", fg="#38bdf8", bg="#0d1826", font=("Consolas", 11, "bold"))
-        self.lbl_timer.pack(side=tk.RIGHT)
-
-        cfg_panel = tk.Frame(content, bg="#0a121c", padx=16, pady=8, highlightthickness=1, highlightbackground="#1b2e45")
-        cfg_panel.pack(fill=tk.X, pady=3)
-        tk.Label(cfg_panel, text="⏱ Тайминг:", bg="#0a121c", fg="#94a3b8", font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, padx=(0, 6))
-        self.interval_var = tk.StringVar(value="60 сек")
-        self.interval_combo = ttk.Combobox(cfg_panel, textvariable=self.interval_var, values=["30 сек", "60 сек", "2 мин", "5 мин"], state="readonly", style="Dark.TCombobox", width=9)
-        self.interval_combo.pack(side=tk.LEFT, padx=(0, 20))
-        self.interval_combo.bind("<<ComboboxSelected>>", self._on_interval_change)
-
-        tk.Label(cfg_panel, text="⏳ Буфер Недавнего:", bg="#0a121c", fg="#94a3b8", font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, padx=(0, 6))
-        self.retention_var = tk.StringVar(value="1.5 часа")
-        self.retention_combo = ttk.Combobox(cfg_panel, textvariable=self.retention_var, values=["Без буфера (сразу)", "15 мин", "30 мин", "1 час", "1.5 часа", "3 часа"], state="readonly", style="Dark.TCombobox", width=18)
-        self.retention_combo.pack(side=tk.LEFT)
-        self.retention_combo.bind("<<ComboboxSelected>>", self._on_retention_change)
-
-        self.btn_autostart = self._create_hover_btn(cfg_panel, text="🚀 Автозапуск", bg="#131e2e", fg="#38bdf8", hover_bg="#1d2e46", cmd=self._toggle_autostart, padx=12, pady=3)
-        self.btn_autostart.pack(side=tk.RIGHT)
-
-        row1 = tk.Frame(content, bg="#060b13")
-        row1.pack(fill=tk.X, pady=3)
-        self._create_hover_btn(row1, "⚡ Сортировать", "#0284c7", "#ffffff", "#0369a1", self._manual_run).pack(side=tk.LEFT, padx=(0, 4))
-        self._create_hover_btn(row1, "🎯 Удалить дубли (MD5)", "#334155", "#f8fafc", "#475569", lambda: threading.Thread(target=self._find_and_delete_duplicates, daemon=True).start()).pack(side=tk.LEFT, padx=4)
-        self._create_hover_btn(row1, "🛡 Антивирус OS", "#dc2626", "#ffffff", "#b91c1c", lambda: threading.Thread(target=self._deep_system_security_scan, daemon=True).start()).pack(side=tk.LEFT, padx=4)
-        self._create_hover_btn(row1, "🔍 Железо ПК", "#475569", "#ffffff", "#64748b", lambda: HardwareDiagWindow(self.root)).pack(side=tk.LEFT, padx=4)
-        self._create_hover_btn(row1, "📥 В трей", "#059669", "#ffffff", "#047857", self.hide_to_tray).pack(side=tk.RIGHT, padx=(4, 0))
-
-        term = tk.Frame(content, bg="#030608", highlightthickness=1, highlightbackground="#132b1f")
-        term.pack(fill=tk.BOTH, expand=True, pady=(4, 2))
-        self.log_text = tk.Text(term, bg="#030608", fg="#34d399", font=("Consolas", 11), relief="flat", padx=14, pady=12)
-        self.log_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        self.scan_bar_canvas = tk.Canvas(content, height=4, bg="#060b13", highlightthickness=0)
-        self.scan_bar_canvas.pack(fill=tk.X, pady=(1, 3))
-        self.root.protocol("WM_DELETE_WINDOW", self.hide_to_tray)
-
-    def log(self, message: str):
-        now = datetime.now().strftime("%H:%M:%S")
-        self.log_text.insert(tk.END, f"[{now}] {message}\\n")
-        self.log_text.see(tk.END)
-
-    def hide_to_tray(self):
-        self.root.withdraw()
-
-    def _manual_run(self):
-        self.countdown = self.check_interval_seconds
-        threading.Thread(target=self._execute_cycle, daemon=True).start()
-
-    def _on_interval_change(self, event=None):
-        mapping = {"30 сек": 30, "60 сек": 60, "2 мин": 120, "5 мин": 300}
-        self.check_interval_seconds = mapping.get(self.interval_var.get(), 60)
-
-    def _on_retention_change(self, event=None):
-        mapping = {"Без буфера (сразу)": 0, "15 мин": 900, "30 мин": 1800, "1 час": 3600, "1.5 часа": 5400, "3 часа": 10800}
-        self.recent_retention_seconds = mapping.get(self.retention_var.get(), 5400)
-
-    def _toggle_autostart(self):
-        self.log("Статус автозапуска изменен.")
-
-    def _bootstrap_environment(self):
-        self.log("Sentinel OS Core активирован.")
-        threading.Thread(target=self._monitor_loop, daemon=True).start()
-
-    def _monitor_loop(self):
-        while True:
-            if self.is_running:
-                self._execute_cycle()
-            time.sleep(self.check_interval_seconds)
-
-    def _execute_cycle(self):
-        self.root.after(0, self.log, "[Цикл] Анализ директории Загрузок завершен.")
-
-    def _deep_system_security_scan(self):
-        self.root.after(0, self.log, "[AV] Сканирование памяти и реестра: угроз не найдено.")
-
-    def _find_and_delete_duplicates(self):
-        self.root.after(0, self.log, "[MD5] Поиск дубликатов завершен: директория чиста.")
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = SentinelOSApp(root)
-    root.mainloop()`;
-
-    // Исходный код Focus Shade Matrix
-    const FOCUS_SOURCE = `import os
-import sys
-import io
-import time
-import ctypes
-from ctypes import wintypes
-import threading
-import subprocess
-import winreg
-from pathlib import Path
-import tkinter as tk
-from tkinter import messagebox
-
-MUTEX_NAME = "Global\\\\SentinelFocusShadeMatrix_Mutex_V7"
-kernel32 = ctypes.windll.kernel32
-user32 = ctypes.windll.user32
-
-mutex = kernel32.CreateMutexW(None, False, MUTEX_NAME)
-if kernel32.GetLastError() == 183:
-    sys.exit(0)
-
-if sys.stdout is None: sys.stdout = io.StringIO()
-if sys.stderr is None: sys.stderr = io.StringIO()
-
-try:
-    from PIL import Image, ImageDraw
-    import pystray
-    from pynput import keyboard, mouse
-except ImportError:
-    pass
-
-try:
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("sentinel.focus.shade.matrix.v7")
-except Exception:
-    pass
-
-GWL_EXSTYLE = -20
-WS_EX_LAYERED = 0x00080000
-WS_EX_TRANSPARENT = 0x00000020
-WS_EX_TOOLWINDOW = 0x00000080
-
-BG_DARK = "#050a12"
-BG_PANEL = "#0a1322"
-BG_CARD = "#0f1c30"
-COLOR_CYAN = "#38bdf8"
-COLOR_GREEN = "#10b981"
-COLOR_BLUE = "#0284c7"
-TEXT_WHITE = "#f8fafc"
-TEXT_MUTED = "#64748b"
-
-class POINT(ctypes.Structure):
-    _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
-
-class RECT(ctypes.Structure):
-    _fields_ = [("left", ctypes.c_long), ("top", ctypes.c_long), ("right", ctypes.c_long), ("bottom", ctypes.c_long)]
-
-class MONITORINFOEX(ctypes.Structure):
-    _fields_ = [("cbSize", wintypes.DWORD), ("rcMonitor", RECT), ("rcWork", RECT), ("dwFlags", wintypes.DWORD), ("szDevice", wintypes.WCHAR * 32)]
-
-def get_all_monitors():
-    monitors = []
-    def monitor_enum_proc(hMonitor, hdcMonitor, lprcMonitor, dwData):
-        mi = MONITORINFOEX()
-        mi.cbSize = ctypes.sizeof(MONITORINFOEX)
-        if user32.GetMonitorInfoW(hMonitor, ctypes.byref(mi)):
-            rc = mi.rcMonitor
-            monitors.append({
-                "device": mi.szDevice,
-                "x": rc.left, "y": rc.top,
-                "w": rc.right - rc.left, "h": rc.bottom - rc.top,
-                "is_hw_primary": bool(mi.dwFlags & 1)
-            })
-        return True
-    ENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HMONITOR, wintypes.HDC, ctypes.POINTER(RECT), wintypes.LPARAM)
-    user32.EnumDisplayMonitors(None, None, ENUMPROC(monitor_enum_proc), 0)
-    return monitors
-
-def make_window_click_through(hwnd: int):
-    try:
-        style = user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
-        style |= WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW
-        user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style)
-    except Exception:
-        pass
-
-class PersistentDimmer(tk.Toplevel):
-    def __init__(self, master, mon):
-        super().__init__(master)
-        self.overrideredirect(True)
-        self.attributes("-topmost", True)
-        self.configure(bg="#000000")
-        self.geometry(f"{mon['w']}x{mon['h']}+{mon['x']}+{mon['y']}")
-        self.attributes("-alpha", 0.0)
-        self.update_idletasks()
-        try:
-            hwnd = user32.GetParent(self.winfo_id()) or self.winfo_id()
-            make_window_click_through(hwnd)
-        except Exception:
-            pass
-
-    def apply_shade(self, state: bool, alpha: float):
-        self.attributes("-alpha", alpha if state else 0.0)
-
-class SentinelDimmerApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("Sentinel OS :: Focus Shade Matrix")
-        self.geometry("880x620")
-        self.configure(bg=BG_DARK)
-        self.monitors = []
-        self.persistent_overlays = []
-        self.selected_primary_idx = 0
-        self.current_mouse_mon_idx = 0
-        self.dimmer_active = tk.BooleanVar(value=False)
-        self.follow_mouse_strict = tk.BooleanVar(value=True)
-        self.shade_level = tk.DoubleVar(value=0.80)
-        self._setup_ui()
-        self._refresh_monitors()
-        threading.Thread(target=self._mouse_tracker, daemon=True).start()
-
-    def _setup_ui(self):
-        bar = tk.Frame(self, bg=BG_DARK)
-        bar.pack(fill=tk.X, padx=14, pady=10)
-        tk.Label(bar, text="SENTINEL FOCUS MATRIX", font=("Consolas", 12, "bold"), bg=BG_DARK, fg=COLOR_GREEN).pack(side=tk.LEFT)
-        self.btn_toggle = tk.Button(bar, text="⚡ Включить Фокус", bg=COLOR_BLUE, fg=TEXT_WHITE, command=self.toggle_dimmer, relief="flat", padx=14, pady=6)
-        self.btn_toggle.pack(side=tk.RIGHT)
-
-    def _refresh_monitors(self):
-        for ov in self.persistent_overlays: ov.destroy()
-        self.persistent_overlays.clear()
-        self.monitors = get_all_monitors()
-        for m in self.monitors:
-            self.persistent_overlays.append(PersistentDimmer(self, m))
-
-    def _update_overlay_states(self):
-        lvl = self.shade_level.get()
-        active = self.dimmer_active.get()
-        for idx, ov in enumerate(self.persistent_overlays):
-            if not active:
-                ov.apply_shade(False, 0.0)
-            else:
-                should_shade = (idx != self.current_mouse_mon_idx) if self.follow_mouse_strict.get() else (idx != self.selected_primary_idx)
-                ov.apply_shade(should_shade, lvl)
-
-    def toggle_dimmer(self):
-        new_state = not self.dimmer_active.get()
-        self.dimmer_active.set(new_state)
-        self.btn_toggle.config(text="⚡ Выключить Фокус" if new_state else "⚡ Включить Фокус")
-        self._update_overlay_states()
-
-    def _mouse_tracker(self):
-        pt = POINT()
-        while True:
-            user32.GetCursorPos(ctypes.byref(pt))
-            cx, cy = pt.x, pt.y
-            for idx, m in enumerate(self.monitors):
-                if (m["x"] <= cx < m["x"] + m["w"]) and (m["y"] <= cy < m["y"] + m["h"]):
-                    if self.current_mouse_mon_idx != idx:
-                        self.current_mouse_mon_idx = idx
-                        if self.dimmer_active.get() and self.follow_mouse_strict.get():
-                            self.after(0, self._update_overlay_states)
-                    break
-            time.sleep(0.05)
-
-if __name__ == "__main__":
-    if sys.platform == "win32":
-        try: ctypes.windll.shcore.SetProcessDpiAwareness(1)
-        except Exception: pass
-    app = SentinelDimmerApp()
-    app.mainloop()`;
-
-    function downloadSentinelCore() {
-      triggerDownload('sentinel_os.py', CORE_SOURCE);
-    }
-
-    function downloadFocusShade() {
-      triggerDownload('sentinel_focus_shade.pyw', FOCUS_SOURCE);
     }
   </script>
 </body>

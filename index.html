@@ -483,3 +483,735 @@ class SentinelOSApp:
         style.configure("Dark.TCombobox", fieldbackground="#131e2e", background="#0b1420", foreground="#38bdf8",
                         darkcolor="#131e2e", lightcolor="#131e2e", selectbackground="#131e2e", selectforeground="#38bdf8",
                         arrowcolor="#38bdf8", bordercolor="#223954")
+        self.root.option_add("*TCombobox*Listbox.background", "#0b1420")
+        self.root.option_add("*TCombobox*Listbox.foreground", "#38bdf8")
+
+    def _build_gradient_background(self):
+        self.bg_canvas = tk.Canvas(self.root, highlightthickness=0)
+        self.bg_canvas.place(x=0, y=0, relwidth=1, relheight=1)
+        self.root.bind("<Configure>", self._draw_gradient)
+
+    def _draw_gradient(self, event=None):
+        width = self.root.winfo_width()
+        height = self.root.winfo_height()
+        if width <= 1 or height <= 1: return
+        self.bg_canvas.delete("grad")
+        steps = 40
+        c1, c2 = (5, 10, 18), (17, 28, 45)
+        for i in range(steps):
+            r = int(c1[0] + (c2[0] - c1[0]) * (i / steps))
+            g = int(c1[1] + (c2[1] - c1[1]) * (i / steps))
+            b = int(c1[2] + (c2[2] - c1[2]) * (i / steps))
+            color = f"#{r:02x}{g:02x}{b:02x}"
+            y1, y2 = int(i * (height / steps)), int((i + 1) * (height / steps))
+            self.bg_canvas.create_rectangle(0, y1, width, y2, fill=color, outline="", tags="grad")
+        self.bg_canvas.tag_lower("grad")
+
+    def _create_hover_btn(self, parent, text, bg, fg, hover_bg, cmd, padx=12, pady=6):
+        btn = tk.Button(parent, text=text, bg=bg, fg=fg, relief="flat", padx=padx, pady=pady,
+                        font=("Segoe UI", 9, "bold"), cursor="hand2", command=cmd)
+        btn.bind("<Enter>", lambda e: btn.config(bg=hover_bg))
+        btn.bind("<Leave>", lambda e: btn.config(bg=bg))
+        return btn
+
+    def _animate_pulse(self):
+        if self.is_running:
+            self.pulse_step = (self.pulse_step + 1) % 10
+            pulse_colors = ["#10b981", "#22c55e", "#4ade80", "#86efac", "#4ade80", "#22c55e", "#10b981", "#059669", "#047857", "#059669"]
+            self.lbl_status.config(fg=pulse_colors[self.pulse_step])
+        self.root.after(140, self._animate_pulse)
+
+    def _animate_busy_bar(self):
+        if self.is_busy:
+            w = self.scan_bar_canvas.winfo_width()
+            self.busy_pos = (self.busy_pos + 18) % (w + 140)
+            self.scan_bar_canvas.delete("wave")
+            self.scan_bar_canvas.create_rectangle(self.busy_pos - 120, 0, self.busy_pos, 4, fill="#38bdf8", outline="", tags="wave")
+            self.root.after(30, self._animate_busy_bar)
+        else:
+            self.scan_bar_canvas.delete("wave")
+
+    def _set_busy(self, status: bool):
+        self.is_busy = status
+        if status: self._animate_busy_bar()
+
+    def _build_ui(self):
+        content = tk.Frame(self.root, bg="#060b13")
+        content.pack(fill=tk.BOTH, expand=True, padx=12, pady=8)
+        header = tk.Frame(content, bg="#0d1826", padx=18, pady=10, highlightthickness=1, highlightbackground="#1e344f")
+        header.pack(fill=tk.X, pady=(0, 4))
+        self.lbl_status = tk.Label(header, text="● SENTINEL ACTIVE", fg="#10b981", bg="#0d1826", font=("Consolas", 13, "bold"))
+        self.lbl_status.pack(side=tk.LEFT)
+        self.lbl_stats = tk.Label(header, text="Сортировано файлов: 0", fg="#cbd5e1", bg="#0d1826", font=("Segoe UI", 10, "bold"))
+        self.lbl_stats.pack(side=tk.LEFT, padx=30)
+        self.lbl_timer = tk.Label(header, text="Следующий цикл: 60 с", fg="#38bdf8", bg="#0d1826", font=("Consolas", 11, "bold"))
+        self.lbl_timer.pack(side=tk.RIGHT)
+
+        cfg_panel = tk.Frame(content, bg="#0a121c", padx=16, pady=8, highlightthickness=1, highlightbackground="#1b2e45")
+        cfg_panel.pack(fill=tk.X, pady=3)
+        tk.Label(cfg_panel, text="⏱ Тайминг:", bg="#0a121c", fg="#94a3b8", font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, padx=(0, 6))
+        self.interval_var = tk.StringVar(value="60 сек")
+        self.interval_combo = ttk.Combobox(cfg_panel, textvariable=self.interval_var, values=["30 сек", "60 сек", "2 мин", "5 мин"], state="readonly", style="Dark.TCombobox", width=9)
+        self.interval_combo.pack(side=tk.LEFT, padx=(0, 20))
+        self.interval_combo.bind("<<ComboboxSelected>>", self._on_interval_change)
+
+        tk.Label(cfg_panel, text="⏳ Буфер Недавнего:", bg="#0a121c", fg="#94a3b8", font=("Segoe UI", 9, "bold")).pack(side=tk.LEFT, padx=(0, 6))
+        self.retention_var = tk.StringVar(value="1.5 часа")
+        self.retention_combo = ttk.Combobox(cfg_panel, textvariable=self.retention_var, values=["Без буфера (сразу)", "15 мин", "30 мин", "1 час", "1.5 часа", "3 часа"], state="readonly", style="Dark.TCombobox", width=18)
+        self.retention_combo.pack(side=tk.LEFT)
+        self.retention_combo.bind("<<ComboboxSelected>>", self._on_retention_change)
+
+        self.btn_autostart = self._create_hover_btn(cfg_panel, text=self._get_autostart_label(), bg="#131e2e" if not self._is_autostart_enabled() else "#065f46", fg="#38bdf8" if not self._is_autostart_enabled() else "#34d399", hover_bg="#1d2e46" if not self._is_autostart_enabled() else "#047857", cmd=self._toggle_autostart, padx=12, pady=3)
+        self.btn_autostart.pack(side=tk.RIGHT)
+
+        row1_panel = tk.Frame(content, bg="#060b13")
+        row1_panel.pack(fill=tk.X, pady=3)
+        self._create_hover_btn(row1_panel, "⚡ Сортировать", "#0284c7", "#ffffff", "#0369a1", self._manual_run).pack(side=tk.LEFT, padx=(0, 4))
+        self._create_hover_btn(row1_panel, "🔨 Внутри папок", "#2563eb", "#ffffff", "#1d4ed8", self._manual_subsort).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row1_panel, "🎯 Удалить дубли (MD5)", "#334155", "#f8fafc", "#475569", lambda: threading.Thread(target=self._find_and_delete_duplicates, daemon=True).start()).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row1_panel, "🛡 Антивирус OS", "#dc2626", "#ffffff", "#b91c1c", lambda: threading.Thread(target=self._deep_system_security_scan, daemon=True).start()).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row1_panel, "🔍 Железо ПК", "#475569", "#ffffff", "#64748b", lambda: HardwareDiagWindow(self.root)).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row1_panel, "📥 В трей", "#059669", "#ffffff", "#047857", self.hide_to_tray).pack(side=tk.RIGHT, padx=(4, 0))
+        self.btn_toggle = self._create_hover_btn(row1_panel, "⏸ Пауза", "#1e293b", "#f1f5f9", "#334155", self._toggle_monitoring)
+        self.btn_toggle.pack(side=tk.RIGHT, padx=4)
+
+        row2_panel = tk.Frame(content, bg="#060b13")
+        row2_panel.pack(fill=tk.X, pady=3)
+        self._create_hover_btn(row2_panel, "🧹 Очистить Temp", "#1e293b", "#cbd5e1", "#334155", lambda: threading.Thread(target=self._clean_temp_files, daemon=True).start(), padx=10, pady=4).pack(side=tk.LEFT, padx=(0, 4))
+        self._create_hover_btn(row2_panel, "⚡ Рестарт GPU", "#991b1b", "#ffffff", "#7f1d1d", self._restart_graphics_driver, padx=10, pady=4).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row2_panel, "☀️ Релакс", "#eab308", "#000000", "#ca8a04", lambda: NatureRelaxWindow(self.root), padx=10, pady=4).pack(side=tk.LEFT, padx=4)
+        self._create_hover_btn(row2_panel, "📂 Загрузки", "#0f172a", "#94a3b8", "#1e293b", lambda: self._open_dir(TARGET_DIR), padx=10, pady=4).pack(side=tk.RIGHT, padx=(4, 0))
+        self._create_hover_btn(row2_panel, "📁 Недавнее", "#0f172a", "#94a3b8", "#1e293b", lambda: self._open_dir(TARGET_DIR / RECENT_FOLDER_NAME), padx=10, pady=4).pack(side=tk.RIGHT, padx=4)
+
+        terminal_frame = tk.Frame(content, bg="#030608", highlightthickness=1, highlightbackground="#132b1f")
+        terminal_frame.pack(fill=tk.BOTH, expand=True, pady=(4, 2))
+        self.log_text = tk.Text(terminal_frame, bg="#030608", fg="#34d399", insertbackground="#34d399", font=("Consolas", 11), relief="flat", padx=14, pady=12)
+        self.log_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar = tk.Scrollbar(terminal_frame, orient=tk.VERTICAL, command=self.log_text.yview)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        self.log_text.config(yscrollcommand=scrollbar.set)
+
+        self.scan_bar_canvas = tk.Canvas(content, height=4, bg="#060b13", highlightthickness=0)
+        self.scan_bar_canvas.pack(fill=tk.X, pady=(1, 3))
+
+        cmd_input_frame = tk.Frame(content, bg="#07140e", highlightthickness=1, highlightbackground="#184227")
+        cmd_input_frame.pack(fill=tk.X, pady=(0, 2))
+        tk.Label(cmd_input_frame, text="Sentinel:~$ ", fg="#4ade80", bg="#07140e", font=("Consolas", 11, "bold")).pack(side=tk.LEFT, padx=(10, 0), pady=6)
+        self.cmd_entry = tk.Entry(cmd_input_frame, bg="#07140e", fg="#a7f3d0", insertbackground="#4ade80", relief="flat", font=("Consolas", 11))
+        self.cmd_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=8, pady=6)
+        self.cmd_entry.bind("<Return>", self._handle_terminal_cmd)
+
+        self.root.protocol("WM_DELETE_WINDOW", self.hide_to_tray)
+
+    def log(self, message: str):
+        now = datetime.now().strftime("%H:%M:%S")
+        self.log_text.insert(tk.END, f"[{now}] {message}\\n")
+        self.log_text.see(tk.END)
+
+    def _deep_system_security_scan(self):
+        self.root.after(0, lambda: self._set_busy(True))
+        self.log(">> [SENTINEL-AV] Старт углубленного аудита системы...")
+        threats = []
+        hosts_path = Path(r"C:\\Windows\\System32\\drivers\\etc\\hosts")
+        if hosts_path.exists():
+            try:
+                with open(hosts_path, "r", encoding="utf-8", errors="ignore") as f:
+                    ht = f.read().lower()
+                    for blk in ["kaspersky", "drweb", "malwarebytes", "virustotal", "avast"]:
+                        if blk in ht and ("127.0.0.1" in ht or "0.0.0.0" in ht):
+                            threats.append((hosts_path, f"Блокировка {blk} в hosts"))
+            except Exception: pass
+
+        self.log(f">> [AV] Аудит завершен. Найдено угроз: {len(threats)}")
+        self.root.after(0, lambda: self._set_busy(False))
+
+    def _find_and_delete_duplicates(self):
+        self.root.after(0, lambda: self._set_busy(True))
+        self.log(">> Поиск и удаление копий по MD5...")
+        hashes = {}
+        removed = 0
+        def get_file_md5(p: Path):
+            h = hashlib.md5()
+            with open(p, "rb") as f:
+                for c in iter(lambda: f.read(65536), b""): h.update(c)
+            return h.hexdigest()
+
+        for f_path in list(TARGET_DIR.rglob("*")):
+            if f_path.is_file() and f_path.suffix.lower() not in TEMP_EXTENSIONS and f_path.name.lower() not in IGNORED_FILES:
+                try:
+                    f_hash = get_file_md5(f_path)
+                    if f_hash in hashes:
+                        f_path.unlink()
+                        removed += 1
+                        self.root.after(0, self.log, f"[Дубликат удалён] {f_path.name}")
+                    else:
+                        hashes[f_hash] = f_path
+                except Exception: continue
+        self.root.after(0, lambda: self._set_busy(False))
+        self.log(f"✓ Завершено. Удалено дубликатов: {removed}")
+
+    def _clean_temp_files(self):
+        t_dir = Path(tempfile.gettempdir())
+        c = 0
+        for item in list(t_dir.iterdir()):
+            try:
+                if item.is_file(): item.unlink(); c += 1
+                elif item.is_dir(): shutil.rmtree(item, ignore_errors=True)
+            except Exception: continue
+        self.log(f"✓ Temp очищен. Удалено объектов: {c}")
+
+    def _restart_graphics_driver(self):
+        try:
+            cmd = 'powershell -Command "(Get-WmiObject Win32_VideoController).Name"'
+            subprocess.Popen(cmd, shell=True, creationflags=subprocess.CREATE_NO_WINDOW)
+            self.log("✓ Рестарт графического видеоадаптера отправлен.")
+        except Exception as e: self.log(f"[Err] {e}")
+
+    def _bootstrap_environment(self):
+        self.log(f">> Инициализация {APP_NAME}...")
+        self.ico_path = generate_app_icon_file()
+        if self.ico_path and os.path.exists(self.ico_path):
+            try: self.root.iconbitmap(self.ico_path)
+            except Exception: pass
+
+        required = {"pystray": "pystray", "PIL": "pillow", "psutil": "psutil"}
+        missing = []
+        for mod, pip_name in required.items():
+            try: __import__(mod)
+            except ImportError: missing.append(pip_name)
+        if missing:
+            self.log(f"(!) Доустановка модулей: {', '.join(missing)}")
+            py_bin = get_console_python_path()
+            for pkg in missing:
+                subprocess.run([py_bin, "-m", "pip", "install", pkg, "--quiet"], creationflags=subprocess.CREATE_NO_WINDOW)
+
+        self._init_tray_safe()
+        self.root.after(0, lambda: self.lbl_status.config(text="● SENTINEL ACTIVE", fg="#10b981"))
+        threading.Thread(target=self._monitor_loop, daemon=True).start()
+        self._tick_timer()
+
+    def _init_tray_safe(self):
+        try:
+            import pystray
+            from PIL import Image
+            img = Image.open(self.ico_path) if (self.ico_path and os.path.exists(self.ico_path)) else Image.new("RGBA", (64, 64), color=(16, 185, 129))
+            menu = pystray.Menu(
+                pystray.MenuItem("Показать", self.show_from_tray, default=True),
+                pystray.MenuItem("Сортировать", lambda: self._manual_run()),
+                pystray.MenuItem("Выход", self._quit_app)
+            )
+            self.tray_icon = pystray.Icon(APP_NAME, img, "Sentinel OS", menu)
+            threading.Thread(target=self.tray_icon.run, daemon=True).start()
+            self.pystray_ready = True
+        except Exception: pass
+
+    def hide_to_tray(self):
+        if self.pystray_ready: self.root.withdraw()
+        else: self.root.iconify()
+
+    def show_from_tray(self, icon=None, item=None):
+        self.root.after(0, self.root.deiconify)
+        self.root.after(0, lambda: self.root.state("zoomed"))
+        self.root.after(0, self.root.lift)
+
+    def _quit_app(self, icon=None, item=None):
+        if self.tray_icon: self.tray_icon.stop()
+        self.root.destroy()
+        sys.exit(0)
+
+    def _open_dir(self, path: Path):
+        path.mkdir(exist_ok=True)
+        os.startfile(path)
+
+    def _is_autostart_enabled(self) -> bool:
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, AUTORUN_REG_KEY, 0, winreg.KEY_READ) as key:
+                val, _ = winreg.QueryValueEx(key, APP_NAME)
+                return bool(val)
+        except FileNotFoundError: return False
+
+    def _get_autostart_label(self) -> str:
+        return "🚀 Автозапуск: [ВКЛ]" if self._is_autostart_enabled() else "🚀 Автозапуск: [ВЫКЛ]"
+
+    def _toggle_autostart(self):
+        is_on = self._is_autostart_enabled()
+        script_path = os.path.abspath(sys.argv[0])
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, AUTORUN_REG_KEY, 0, winreg.KEY_WRITE) as key:
+            if is_on:
+                try: winreg.DeleteValue(key, APP_NAME)
+                except FileNotFoundError: pass
+                self.log("Автозапуск Windows отключен.")
+            else:
+                pyw = Path(sys.executable).parent / "pythonw.exe"
+                bin_p = pyw if pyw.exists() else Path(sys.executable)
+                winreg.SetValueEx(key, APP_NAME, 0, winreg.REG_SZ, f'"{bin_p}" "{script_path}"')
+                self.log("Sentinel OS установлен в автозапуск.")
+        now_on = self._is_autostart_enabled()
+        self.btn_autostart.config(text=self._get_autostart_label(), bg="#065f46" if now_on else "#131e2e", fg="#34d399" if now_on else "#38bdf8")
+
+    def _handle_terminal_cmd(self, event=None):
+        raw = self.cmd_entry.get().strip()
+        self.cmd_entry.delete(0, tk.END)
+        if not raw: return
+        self.log(f">> {raw}")
+        cmd = raw.split()[0].lower()
+        if cmd == "cls": self.log_text.delete("1.0", tk.END)
+        elif cmd == "sort": threading.Thread(target=self._deep_subsort, daemon=True).start()
+        elif cmd == "scan": self._manual_run()
+        elif cmd == "clean": threading.Thread(target=self._clean_temp_files, daemon=True).start()
+        elif cmd == "dups": threading.Thread(target=self._find_and_delete_duplicates, daemon=True).start()
+        elif cmd in ("specs", "diag"): HardwareDiagWindow(self.root)
+        elif cmd == "open": self._open_dir(TARGET_DIR)
+        else:
+            threading.Thread(target=lambda: subprocess.run(raw, shell=True), daemon=True).start()
+
+    def _on_interval_change(self, event=None):
+        m = {"30 сек": 30, "60 сек": 60, "2 мин": 120, "5 мин": 300}
+        self.check_interval_seconds = m.get(self.interval_var.get(), 60)
+        self.countdown = self.check_interval_seconds
+
+    def _on_retention_change(self, event=None):
+        m = {"Без буфера (сразу)": 0, "15 мин": 900, "30 мин": 1800, "1 час": 3600, "1.5 часа": 5400, "3 часа": 10800}
+        self.recent_retention_seconds = m.get(self.retention_var.get(), 5400)
+
+    def _toggle_monitoring(self):
+        self.is_running = not self.is_running
+        self.lbl_status.config(text="● SENTINEL ACTIVE" if self.is_running else "■ PAUSED", fg="#10b981" if self.is_running else "#ef4444")
+        self.btn_toggle.config(text="⏸ Пауза" if self.is_running else "▶ Старт")
+
+    def _manual_run(self):
+        self.countdown = self.check_interval_seconds
+        threading.Thread(target=self._execute_cycle, daemon=True).start()
+
+    def _manual_subsort(self):
+        threading.Thread(target=self._deep_subsort, daemon=True).start()
+
+    def _tick_timer(self):
+        if self.is_running:
+            if self.countdown > 0:
+                self.lbl_timer.config(text=f"Следующий цикл: {self.countdown} с")
+                self.countdown -= 1
+            else:
+                self.countdown = self.check_interval_seconds
+        self.root.after(1000, self._tick_timer)
+
+    def _monitor_loop(self):
+        while True:
+            if self.is_running: self._execute_cycle()
+            time.sleep(self.check_interval_seconds)
+
+    def _resolve_unique_path(self, dest_folder: Path, filename: str) -> Path:
+        target = dest_folder / filename
+        if not target.exists(): return target
+        stem, suffix = Path(filename).stem, Path(filename).suffix
+        c = 1
+        while True:
+            t = dest_folder / f"{stem} ({c}){suffix}"
+            if not t.exists(): return t
+            c += 1
+
+    def _is_file_ready(self, file_path: Path) -> bool:
+        if file_path.suffix.lower() in TEMP_EXTENSIONS: return False
+        try:
+            with open(file_path, "ab"): pass
+            return True
+        except (PermissionError, OSError): return False
+
+    def _deep_subsort(self):
+        self.root.after(0, lambda: self._set_busy(True))
+        all_main = list(CATEGORIES.keys()) + ["Разное"]
+        moved = 0
+        for cat in all_main:
+            c_dir = TARGET_DIR / cat
+            if not c_dir.exists() or not c_dir.is_dir(): continue
+            for item in list(c_dir.iterdir()):
+                if item.is_file() and not item.name.startswith(".") and item.name.lower() not in IGNORED_FILES:
+                    if not self._is_file_ready(item): continue
+                    ext = item.suffix.lower().lstrip(".") or "без_расширения"
+                    t_dir = c_dir / ext
+                    t_dir.mkdir(parents=True, exist_ok=True)
+                    dest = self._resolve_unique_path(t_dir, item.name)
+                    try:
+                        shutil.move(str(item), str(dest))
+                        moved += 1
+                    except Exception: pass
+        self.root.after(0, lambda: self._set_busy(False))
+        if moved: self.root.after(0, self.log, f"✓ Сортировано в подпапках: {moved}")
+
+    def _move_incoming_to_recent(self, folder: Path) -> int:
+        r_dir = folder / RECENT_FOLDER_NAME
+        r_dir.mkdir(exist_ok=True)
+        c = 0
+        for item in folder.iterdir():
+            if item.is_dir() or item.name.startswith(".") or item.name.lower() in IGNORED_FILES: continue
+            if not self._is_file_ready(item): continue
+            dest = self._resolve_unique_path(r_dir, item.name)
+            try:
+                shutil.move(str(item), str(dest))
+                c += 1
+                self.root.after(0, self.log, f"Новый файл -> Недавнее/{item.name}")
+            except Exception: continue
+        return c
+
+    def _sort_mature_files(self, folder: Path) -> int:
+        r_dir = folder / RECENT_FOLDER_NAME
+        if not r_dir.exists(): return 0
+        now_t = time.time()
+        c = 0
+        for item in list(r_dir.iterdir()):
+            if item.is_dir() or item.name.startswith(".") or item.name.lower() in IGNORED_FILES: continue
+            if not self._is_file_ready(item): continue
+            if (now_t - item.stat().st_mtime) < self.recent_retention_seconds: continue
+            ext = item.suffix.lower()
+            sub = ext.lstrip(".") if ext else "без_расширения"
+            cat = "Разное"
+            for cn, exts in CATEGORIES.items():
+                if ext in exts: cat = cn; break
+            t_dir = folder / cat / sub
+            t_dir.mkdir(parents=True, exist_ok=True)
+            dest = self._resolve_unique_path(t_dir, item.name)
+            try:
+                shutil.move(str(item), str(dest))
+                c += 1
+                self.root.after(0, self.log, f"Буфер истёк: {item.name} -> {cat}/{sub}/")
+            except Exception: continue
+        return c
+
+    def _execute_cycle(self):
+        if not TARGET_DIR.exists(): return
+        a = self._move_incoming_to_recent(TARGET_DIR)
+        b = self._sort_mature_files(TARGET_DIR)
+        tot = a + b
+        if tot: self.root.after(0, self.log, f"[Автоцикл] Обработано файлов: {tot}")
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = SentinelOSApp(root)
+    root.mainloop()
+`;
+
+    // Полный код Sentinel Focus Shade Matrix с автоустановкой зависимостей
+    const FOCUS_SHADE_PYW = `import os
+import sys
+import io
+import time
+import ctypes
+from ctypes import wintypes
+import threading
+import subprocess
+import winreg
+from pathlib import Path
+
+MUTEX_NAME = "Global\\\\SentinelFocusShadeMatrix_Mutex_V7"
+kernel32 = ctypes.windll.kernel32
+user32 = ctypes.windll.user32
+
+mutex = kernel32.CreateMutexW(None, False, MUTEX_NAME)
+if kernel32.GetLastError() == 183:
+    sys.exit(0)
+
+if sys.stdout is None: sys.stdout = io.StringIO()
+if sys.stderr is None: sys.stderr = io.StringIO()
+
+def ensure_dependencies():
+    packages = {"PIL": "Pillow", "pystray": "pystray", "pynput": "pynput"}
+    for mod, pkg in packages.items():
+        try: __import__(mod)
+        except ImportError:
+            try:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", pkg, "--quiet"], creationflags=0x08000000)
+            except Exception: pass
+
+ensure_dependencies()
+
+from PIL import Image, ImageDraw
+import pystray
+from pynput import keyboard, mouse
+import tkinter as tk
+from tkinter import messagebox
+
+try:
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("sentinel.focus.shade.matrix.v7")
+except Exception: pass
+
+GWL_EXSTYLE = -20
+WS_EX_LAYERED = 0x00080000
+WS_EX_TRANSPARENT = 0x00000020
+WS_EX_TOOLWINDOW = 0x00000080
+
+BG_DARK = "#050a12"
+BG_PANEL = "#0a1322"
+BG_CARD = "#0f1c30"
+BG_ACTIVE = "#16335a"
+BORDER_CLR = "#1e293b"
+COLOR_CYAN = "#38bdf8"
+COLOR_GREEN = "#10b981"
+COLOR_RED = "#f43f5e"
+COLOR_AMBER = "#f59e0b"
+COLOR_BLUE = "#0284c7"
+TEXT_WHITE = "#f8fafc"
+TEXT_MUTED = "#64748b"
+
+class POINT(ctypes.Structure):
+    _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
+
+class RECT(ctypes.Structure):
+    _fields_ = [("left", ctypes.c_long), ("top", ctypes.c_long), ("right", ctypes.c_long), ("bottom", ctypes.c_long)]
+
+class MONITORINFOEX(ctypes.Structure):
+    _fields_ = [("cbSize", wintypes.DWORD), ("rcMonitor", RECT), ("rcWork", RECT), ("dwFlags", wintypes.DWORD), ("szDevice", wintypes.WCHAR * 32)]
+
+class DISPLAY_DEVICE(ctypes.Structure):
+    _fields_ = [("cb", wintypes.DWORD), ("DeviceName", wintypes.WCHAR * 32), ("DeviceString", wintypes.WCHAR * 128), ("StateFlags", wintypes.DWORD), ("DeviceID", wintypes.WCHAR * 128), ("DeviceKey", wintypes.WCHAR * 128)]
+
+def get_all_monitors():
+    monitors = []
+    def monitor_enum_proc(hMonitor, hdcMonitor, lprcMonitor, dwData):
+        mi = MONITORINFOEX()
+        mi.cbSize = ctypes.sizeof(MONITORINFOEX)
+        if user32.GetMonitorInfoW(hMonitor, ctypes.byref(mi)):
+            rc = mi.rcMonitor
+            name = f"Display-{len(monitors) + 1}"
+            dd = DISPLAY_DEVICE()
+            dd.cb = ctypes.sizeof(DISPLAY_DEVICE)
+            if user32.EnumDisplayDevicesW(mi.szDevice, 0, ctypes.byref(dd), 0):
+                s = dd.DeviceString.strip()
+                if s and "generic" not in s.lower(): name = s
+            monitors.append({
+                "device": mi.szDevice, "friendly_name": name,
+                "x": rc.left, "y": rc.top, "w": rc.right - rc.left, "h": rc.bottom - rc.top,
+                "is_hw_primary": bool(mi.dwFlags & 1)
+            })
+        return True
+    ENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HMONITOR, wintypes.HDC, ctypes.POINTER(RECT), wintypes.LPARAM)
+    user32.EnumDisplayMonitors(None, None, ENUMPROC(monitor_enum_proc), 0)
+    return monitors
+
+def make_window_click_through(hwnd: int):
+    try:
+        style = user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
+        style |= WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW
+        user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style)
+    except Exception: pass
+
+def create_circular_icon():
+    img = Image.new("RGBA", (64, 64), color=(0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.ellipse((2, 2, 62, 62), fill="#0a1322", outline="#10b981", width=3)
+    d.ellipse((10, 10, 54, 54), fill="#050a12", outline="#38bdf8", width=2)
+    d.ellipse((24, 24, 40, 40), fill="#10b981")
+    return img
+
+class PersistentDimmer(tk.Toplevel):
+    def __init__(self, master, mon):
+        super().__init__(master)
+        self.mon = mon
+        self.overrideredirect(True)
+        self.attributes("-topmost", True)
+        self.configure(bg="#000000")
+        self.geometry(f"{mon['w']}x{mon['h']}+{mon['x']}+{mon['y']}")
+        self.attributes("-alpha", 0.0)
+        self.update_idletasks()
+        try:
+            hwnd = user32.GetParent(self.winfo_id()) or self.winfo_id()
+            make_window_click_through(hwnd)
+        except Exception: pass
+
+    def apply_shade(self, state: bool, alpha: float):
+        self.attributes("-alpha", alpha if state else 0.0)
+
+class SentinelDimmerApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Sentinel OS :: Focus Shade Matrix")
+        self.geometry("880x620")
+        self.minsize(760, 520)
+        self.configure(bg=BG_DARK)
+        self.monitors = []
+        self.persistent_overlays = []
+        self.selected_primary_idx = 0
+        self.current_mouse_mon_idx = 0
+        self.dimmer_active = tk.BooleanVar(value=False)
+        self.follow_mouse_strict = tk.BooleanVar(value=True)
+        self.shade_level = tk.DoubleVar(value=0.80)
+        self.current_combo = "F9"
+        self.combo_label_var = tk.StringVar(value="⌨ БИНД: F9")
+        self.is_listening_combo = False
+        self.currently_pressed = set()
+        self.collected_combo = set()
+
+        self._setup_ui()
+        self._refresh_monitors()
+        self._start_input_engine()
+        self.mouse_worker_running = True
+        threading.Thread(target=self._mouse_tracker, daemon=True).start()
+        self._setup_tray()
+        self.protocol("WM_DELETE_WINDOW", self.hide_to_tray)
+
+    def _setup_ui(self):
+        status_bar = tk.Frame(self, bg=BG_DARK, height=36)
+        status_bar.pack(fill=tk.X, padx=14, pady=(10, 4))
+        self.lbl_status = tk.Label(status_bar, text="SENTINEL DECK ACTIVE", font=("Consolas", 10, "bold"), bg=BG_DARK, fg=COLOR_GREEN)
+        self.lbl_status.pack(side=tk.LEFT)
+        self.lbl_dim_info = tk.Label(status_bar, text="[ ФОКУС: ВЫКЛ ]", font=("Consolas", 9, "bold"), bg=BG_DARK, fg=TEXT_MUTED)
+        self.lbl_dim_info.pack(side=tk.LEFT, padx=16)
+
+        actions_bar = tk.Frame(self, bg=BG_DARK)
+        actions_bar.pack(fill=tk.X, padx=14, pady=4)
+        self.btn_toggle = tk.Button(actions_bar, text="⚡ Включить Фокус", font=("Consolas", 9, "bold"), bg=COLOR_BLUE, fg=TEXT_WHITE, bd=0, padx=14, pady=7, command=self.toggle_dimmer)
+        self.btn_toggle.pack(side=tk.LEFT, padx=(0, 8))
+        self.btn_bind = tk.Button(actions_bar, textvariable=self.combo_label_var, font=("Consolas", 9, "bold"), bg=COLOR_AMBER, fg="#000000", bd=0, padx=14, pady=7, command=self._start_listening_combo)
+        self.btn_bind.pack(side=tk.LEFT, padx=6)
+        btn_tray = tk.Button(actions_bar, text="📥 В трей", font=("Consolas", 9, "bold"), bg=COLOR_GREEN, fg="#000000", bd=0, padx=14, pady=7, command=self.hide_to_tray)
+        btn_tray.pack(side=tk.RIGHT)
+
+        map_wrapper = tk.Frame(self, bg=BG_PANEL, bd=1, relief="solid", highlightbackground=BORDER_CLR)
+        map_wrapper.pack(fill=tk.BOTH, expand=True, padx=14, pady=6)
+        self.canvas_map = tk.Canvas(map_wrapper, bg=BG_DARK, highlightthickness=0)
+        self.canvas_map.pack(fill=tk.BOTH, expand=True, padx=8, pady=8)
+        self.canvas_map.bind("<Configure>", lambda e: self._draw_monitor_layout())
+
+        opt_bar = tk.Frame(self, bg=BG_PANEL, bd=1, relief="solid", highlightbackground=BORDER_CLR)
+        opt_bar.pack(fill=tk.X, padx=14, pady=4)
+        tk.Label(opt_bar, text="ЗАТЕМНЕНИЕ:", font=("Consolas", 9, "bold"), bg=BG_PANEL, fg=TEXT_WHITE).pack(side=tk.LEFT, padx=(12, 4), pady=8)
+        self.slider = tk.Scale(opt_bar, from_=0.20, to=1.00, resolution=0.05, orient=tk.HORIZONTAL, variable=self.shade_level, showvalue=False, bg=BG_PANEL, highlightthickness=0, troughcolor=BG_DARK, length=180, command=lambda v: self._update_overlay_states())
+        self.slider.pack(side=tk.LEFT, padx=6)
+        chk_follow = tk.Checkbutton(opt_bar, text="Следовать за мышью (Strict Follow)", variable=self.follow_mouse_strict, font=("Consolas", 9, "bold"), bg=BG_PANEL, fg=COLOR_CYAN, selectcolor=BG_DARK, command=self._update_overlay_states)
+        chk_follow.pack(side=tk.RIGHT, padx=12)
+
+    def _refresh_monitors(self):
+        for ov in self.persistent_overlays: ov.destroy()
+        self.persistent_overlays.clear()
+        self.monitors = get_all_monitors()
+        for m in self.monitors: self.persistent_overlays.append(PersistentDimmer(self, m))
+        self.after(50, self._draw_monitor_layout)
+        self._update_overlay_states()
+
+    def _draw_monitor_layout(self):
+        self.canvas_map.delete("all")
+        if not self.monitors: return
+        cw, ch = self.canvas_map.winfo_width(), self.canvas_map.winfo_height()
+        if cw < 50 or ch < 50: return
+        min_x = min(m["x"] for m in self.monitors); max_x = max(m["x"] + m["w"] for m in self.monitors)
+        min_y = min(m["y"] for m in self.monitors); max_y = max(m["y"] + m["h"] for m in self.monitors)
+        tw, th = max_x - min_x, max_y - min_y
+        if tw <= 0 or th <= 0: return
+        scale = min((cw - 60) / tw, (ch - 60) / th)
+        bx, by = (cw - tw * scale) / 2, (ch - th * scale) / 2
+
+        for idx, m in enumerate(self.monitors):
+            x1 = bx + (m["x"] - min_x) * scale
+            y1 = by + (m["y"] - min_y) * scale
+            x2, y2 = x1 + m["w"] * scale, y1 + m["h"] * scale
+            is_mouse = (idx == self.current_mouse_mon_idx)
+            self.canvas_map.create_rectangle(x1, y1, x2, y2, fill=BG_ACTIVE if is_mouse else BG_CARD, outline=COLOR_GREEN if is_mouse else BORDER_CLR, width=2)
+            self.canvas_map.create_text((x1 + x2)/2, (y1 + y2)/2, text=f"Display {idx+1}", fill=TEXT_WHITE, font=("Consolas", 10, "bold"))
+
+    def _update_overlay_states(self):
+        lvl = self.shade_level.get()
+        active = self.dimmer_active.get()
+        for idx, ov in enumerate(self.persistent_overlays):
+            if not active: ov.apply_shade(False, 0.0)
+            else:
+                should_shade = (idx != self.current_mouse_mon_idx) if self.follow_mouse_strict.get() else (idx != self.selected_primary_idx)
+                ov.apply_shade(should_shade, lvl)
+
+    def toggle_dimmer(self):
+        new_state = not self.dimmer_active.get()
+        self.dimmer_active.set(new_state)
+        self.btn_toggle.config(bg=COLOR_RED if new_state else COLOR_BLUE, text="⚡ Выключить Фокус" if new_state else "⚡ Включить Фокус")
+        self.lbl_dim_info.config(text="[ ФОКУС: ВКЛ ]" if new_state else "[ ФОКУС: ВЫКЛ ]", fg=COLOR_GREEN if new_state else TEXT_MUTED)
+        self._update_overlay_states()
+
+    def _start_listening_combo(self):
+        self.is_listening_combo = True
+        self.collected_combo.clear()
+        self.btn_bind.config(text="[ Зажмите бинд... ]", bg=COLOR_CYAN)
+
+    def _start_input_engine(self):
+        def on_press(key):
+            try:
+                k = getattr(key, 'name', str(key)).upper().replace("'", "")
+                self.currently_pressed.add(k)
+                if self.is_listening_combo:
+                    self.collected_combo.add(k)
+                    self.btn_bind.config(text=" + ".join(sorted(self.collected_combo)))
+                    return
+                if set(self.current_combo.split(" + ")).issubset(self.currently_pressed):
+                    self.after(0, self.toggle_dimmer)
+            except Exception: pass
+
+        def on_release(key):
+            try:
+                k = getattr(key, 'name', str(key)).upper().replace("'", "")
+                if k in self.currently_pressed: self.currently_pressed.remove(k)
+                if self.is_listening_combo and self.collected_combo:
+                    self.current_combo = " + ".join(sorted(self.collected_combo))
+                    self.combo_label_var.set(f"⌨ БИНД: {self.current_combo}")
+                    self.btn_bind.config(text=f"⌨ БИНД: {self.current_combo}", bg=COLOR_AMBER)
+                    self.is_listening_combo = False
+            except Exception: pass
+
+        keyboard.Listener(on_press=on_press, on_release=on_release, daemon=True).start()
+
+    def _mouse_tracker(self):
+        pt = POINT()
+        while self.mouse_worker_running:
+            user32.GetCursorPos(ctypes.byref(pt))
+            cx, cy = pt.x, pt.y
+            f_idx = None
+            for idx, m in enumerate(self.monitors):
+                if (m["x"] <= cx < m["x"] + m["w"]) and (m["y"] <= cy < m["y"] + m["h"]):
+                    f_idx = idx
+                    break
+            if f_idx is not None and f_idx != self.current_mouse_mon_idx:
+                self.current_mouse_mon_idx = f_idx
+                self.after(0, self._draw_monitor_layout)
+                if self.dimmer_active.get() and self.follow_mouse_strict.get():
+                    self.after(0, self._update_overlay_states)
+            time.sleep(0.04)
+
+    def _setup_tray(self):
+        img = create_circular_icon()
+        menu = pystray.Menu(
+            pystray.MenuItem("Развернуть", self.show_from_tray, default=True),
+            pystray.MenuItem("Фокус Вкл/Выкл", lambda: self.after(0, self.toggle_dimmer)),
+            pystray.MenuItem("Выход", self.quit_completely)
+        )
+        self.tray_icon = pystray.Icon("SentinelFocusShade", img, "Sentinel Focus Shade", menu)
+        threading.Thread(target=self.tray_icon.run, daemon=True).start()
+
+    def hide_to_tray(self): self.withdraw()
+    def show_from_tray(self, icon=None, item=None):
+        self.after(0, self.deiconify)
+        self.after(0, self.lift)
+
+    def quit_completely(self):
+        self.mouse_worker_running = False
+        for ov in self.persistent_overlays: ov.destroy()
+        if self.tray_icon: self.tray_icon.stop()
+        if mutex: kernel32.CloseHandle(mutex)
+        self.after(0, self.destroy)
+
+if __name__ == "__main__":
+    if sys.platform == "win32":
+        try: ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception: pass
+    app = SentinelDimmerApp()
+    app.mainloop()
+`;
+
+    function downloadSetupScript() {
+      downloadFile('setup_env.bat', SETUP_BAT);
+    }
+
+    function downloadSorterScript() {
+      downloadFile('file_sorter.pyw', FILE_SORTER_PYW);
+    }
+
+    function downloadDimmerScript() {
+      downloadFile('sentinel_dimmer.pyw', FOCUS_SHADE_PYW);
+    }
+  </script>
+</body>
+</html>

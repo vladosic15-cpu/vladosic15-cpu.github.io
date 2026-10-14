@@ -29,6 +29,13 @@
       background-image: radial-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px);
       background-size: 24px 24px;
     }
+    /* Класс для гарантированного скрытия модалки */
+    .modal-backdrop {
+      display: none;
+    }
+    .modal-backdrop.active {
+      display: flex !important;
+    }
   </style>
 </head>
 <body class="font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-black grid-pattern">
@@ -71,7 +78,7 @@
             Если программы не открываются по клику: скачайте скрипт настройки. Он проверяет наличие Python, прописывает системный PATH и автоматически ставит библиотеки (<code class="text-sky-400">psutil</code>, <code class="text-sky-400">pillow</code>, <code class="text-sky-400">pystray</code>, <code class="text-sky-400">pynput</code>).
           </p>
         </div>
-        <button onclick="downloadSetupScript()" class="shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-mono text-xs font-bold px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-sky-950">
+        <button onclick="downloadSetupScript()" class="shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-mono text-xs font-bold px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-sky-950 cursor-pointer">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
           Скачать setup_env.bat
         </button>
@@ -110,11 +117,11 @@
         </div>
 
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
-          <button onclick="openModal('modal-core')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
+          <button type="button" onclick="openModal('modal-core')" class="text-xs font-mono text-sky-400 hover:text-sky-300 flex items-center gap-1.5 hover:underline underline-offset-4 cursor-pointer">
             📖 Инструкция по использованию &rarr;
           </button>
           
-          <button onclick="downloadSorterScript()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950">
+          <button type="button" onclick="downloadSorterScript()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950 cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Скачать file_sorter.pyw
           </button>
@@ -145,11 +152,11 @@
         </div>
 
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
-          <button onclick="openModal('modal-focus')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
+          <button type="button" onclick="openModal('modal-focus')" class="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 hover:underline underline-offset-4 cursor-pointer">
             📖 Инструкция по использованию &rarr;
           </button>
           
-          <button onclick="downloadDimmerScript()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950">
+          <button type="button" onclick="downloadDimmerScript()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950 cursor-pointer">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Скачать sentinel_dimmer.pyw
           </button>
@@ -165,49 +172,105 @@
     </footer>
   </main>
 
-  <!-- МОДАЛКА CORE -->
-  <div id="modal-core" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <!-- МОДАЛКА 1: CORE -->
+  <div id="modal-core" class="modal-backdrop fixed inset-0 z-50 bg-black/80 backdrop-blur-sm items-center justify-center p-4" onclick="handleBackdropClick(event, 'modal-core')">
     <div class="bg-[#0b1017] border border-slate-700 w-full max-w-2xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
         <h3 class="text-white font-mono font-bold text-base flex items-center gap-2">
-          <span class="text-sky-400">#</span> Sentinel OS Core v4.5
+          <span class="text-sky-400">#</span> Sentinel OS Core v4.5 — Инструкция
         </h3>
-        <button onclick="closeModal('modal-core')" class="text-slate-400 hover:text-white font-mono text-lg">&times;</button>
+        <button type="button" onclick="closeModal('modal-core')" class="text-slate-400 hover:text-white font-mono text-2xl leading-none cursor-pointer">&times;</button>
       </div>
       <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 font-sans leading-relaxed">
-        <p><strong>Как работает буфер:</strong> Все новые файлы из браузера попадают в папку «Недавнее» на 90 минут. Если файл нужен прямо сейчас — он под рукой. Спустя 90 минут программа сама распределяет его по нужным каталогам.</p>
-        <p><strong>Защита системы:</strong> Кнопка «🛡 Антивирус OS» сканирует ключи автозагрузки, активные процессы в RAM и исполняемые скрипты на наличие вредоносных команд.</p>
-        <p><strong>Очистка места:</strong> Кнопка «🎯 Удалить дубли» сверяет MD5-суммы и удаляет полные копии файлов, освобождая память накопителя.</p>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-sky-400 mb-1">1. Принцип работы буфера</h4>
+          <p>Все новые файлы, скачиваемые через браузер, мгновенно отправляются в папку <strong>«Недавнее»</strong> внутри Загрузок на 90 минут. Если файл нужен прямо сейчас — он лежит под рукой. Спустя 90 минут программа сама распределяет его по категориям (Аудио, Архивы, Видео, Моды Minecraft, Софт, Документы) и подпапкам с расширениями.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-sky-400 mb-1">2. Удаление дубликатов (MD5)</h4>
+          <p>Кнопка <strong>«🎯 Удалить дубли»</strong> побайтово рассчитывает MD5-хеш каждого файла в Загрузках. Если находятся точные копии (например, повторно скачанные архивы или установщики), дубликат стирается, освобождая место на накопителе.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-sky-400 mb-1">3. Антивирусный аудит</h4>
+          <p>Кнопка <strong>«🛡 Антивирус OS»</strong> проверяет файл hosts на подмену адресов, ветки реестра Run на скрытые автозапуски, активные процессы в оперативной памяти и скрипты (.bat/.ps1/.vbs) на вредоносные вызовы.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-sky-400 mb-1">4. Запуск в Windows</h4>
+          <p>Файл имеет расширение <code class="text-sky-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">.pyw</code>. Он запускается двойным кликом мыши или через консоль командой: <code class="text-sky-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">python file_sorter.pyw</code>.</p>
+        </div>
       </div>
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
-        <button onclick="closeModal('modal-core')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
+        <button type="button" onclick="closeModal('modal-core')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors cursor-pointer">Закрыть</button>
       </div>
     </div>
   </div>
 
-  <!-- МОДАЛКА FOCUS -->
-  <div id="modal-focus" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <!-- МОДАЛКА 2: FOCUS -->
+  <div id="modal-focus" class="modal-backdrop fixed inset-0 z-50 bg-black/80 backdrop-blur-sm items-center justify-center p-4" onclick="handleBackdropClick(event, 'modal-focus')">
     <div class="bg-[#0b1017] border border-slate-700 w-full max-w-2xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
         <h3 class="text-white font-mono font-bold text-base flex items-center gap-2">
-          <span class="text-emerald-400">#</span> Focus Shade Matrix
+          <span class="text-emerald-400">#</span> Focus Shade Matrix — Инструкция
         </h3>
-        <button onclick="closeModal('modal-focus')" class="text-slate-400 hover:text-white font-mono text-lg">&times;</button>
+        <button type="button" onclick="closeModal('modal-focus')" class="text-slate-400 hover:text-white font-mono text-2xl leading-none cursor-pointer">&times;</button>
       </div>
       <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 font-sans leading-relaxed">
-        <p><strong>Следование за мышью:</strong> Программа отслеживает экран с курсором. Неактивные мониторы автоматически приглушаются полупрозрачным черным оверлеем.</p>
-        <p><strong>Горячие клавиши:</strong> Стандартный бинд — клавиша <strong>F9</strong>. Чтобы изменить, нажмите желтую кнопку бинда и зажмите нужную комбинацию на клавиатуре или боковые кнопки мыши (Mouse4 / Mouse5).</p>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-emerald-400 mb-1">1. Многомониторный фокус</h4>
+          <p>Утилита рассчитана на сетапы из двух, трёх и более дисплеев. Она создаёт WinAPI-оверлеи поверх неактивных экранов: они не блокируют нажатия мыши (полный click-through), но приглушают свет, позволяя сфокусироваться на рабочем экране.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-emerald-400 mb-1">2. Режим следования за мышью (Strict Follow)</h4>
+          <p>При включенном режиме следования ярким остаётся только экран, где находится курсор. Как только мышь переходит границу дисплея, новый монитор моментально загорается, а предыдущий мягко гаснет.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-emerald-400 mb-1">3. Назначение горячих клавиш</h4>
+          <p>Быстрое включение/отключение по умолчанию висит на клавише <strong>F9</strong>. Чтобы изменить хоткей: нажмите желтую кнопку в окне программы и зажмите нужные клавиши (например, <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Ctrl + Shift + D</code>) или боковые кнопки мыши (<code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse4</code> / <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse5</code>).</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold font-mono text-xs uppercase tracking-wider text-emerald-400 mb-1">4. Работа в трее</h4>
+          <p>Кнопка <strong>«📥 В трей»</strong> прячет интерфейс в область уведомлений Windows рядом с часами. Запуск: двойной клик по <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">sentinel_dimmer.pyw</code>.</p>
+        </div>
       </div>
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
-        <button onclick="closeModal('modal-focus')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
+        <button type="button" onclick="closeModal('modal-focus')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors cursor-pointer">Закрыть</button>
       </div>
     </div>
   </div>
 
   <script>
-    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+    // Управление модальными окнами
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
 
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleBackdropClick(event, modalId) {
+      if (event.target.id === modalId) {
+        closeModal(modalId);
+      }
+    }
+
+    // Закрытие по нажатию Esc
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal('modal-core');
+        closeModal('modal-focus');
+      }
+    });
+
+    // Функция скачивания файлов
     function downloadFile(filename, content) {
       const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
       const url = URL.createObjectURL(blob);
@@ -255,7 +318,7 @@ echo ========================================================
 pause
 `;
 
-    // Полный код Sentinel OS Core с обработкой ошибок
+    // Полный код Sentinel OS Core
     const FILE_SORTER_PYW = `import os
 import sys
 import subprocess
@@ -270,7 +333,6 @@ import socket
 from datetime import datetime
 from pathlib import Path
 
-# Блок безопасного запуска GUI
 try:
     import tkinter as tk
     from tkinter import ttk, messagebox
@@ -890,7 +952,7 @@ if __name__ == "__main__":
     root.mainloop()
 `;
 
-    // Полный код Sentinel Focus Shade Matrix с автоустановкой зависимостей
+    // Полный код Focus Shade Matrix
     const FOCUS_SHADE_PYW = `import os
 import sys
 import io

@@ -36,17 +36,17 @@
   <main class="max-w-4xl mx-auto px-6 py-12 sm:py-20">
     
     <!-- Шапка -->
-    <header class="mb-14 border-b border-slate-800/80 pb-10">
+    <header class="mb-12 border-b border-slate-800/80 pb-10">
       <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
         <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white font-mono flex items-center gap-3">
           <span class="text-sky-400">#</span> vladosic15 // lab
         </h1>
         <span class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-700/50 px-3 py-1 rounded-full">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> SYSTEM READY
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ONLINE
         </span>
       </div>
       <p class="text-sm sm:text-base text-slate-400 max-w-2xl leading-relaxed">
-        Инженерная лаборатория и репозиторий утилит под Windows: автоматизация файловой системы, аудит процессов и многомониторный фокус.
+        Инженерные утилиты автоматизации Windows: интеллектуальный файловый менеджер, встроенный антивирусный аудит и фокус-матрица для многомониторных конфигураций.
       </p>
       
       <div class="flex items-center gap-5 mt-6 text-xs font-mono">
@@ -54,20 +54,39 @@
           <span>Telegram</span> &rarr; @Tony_Versety
         </a>
         <a href="https://github.com/vladosic15-cpu" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors underline underline-offset-4">
-          GitHub Profile &rarr;
+          GitHub &rarr;
         </a>
       </div>
     </header>
 
-    <!-- Сетка проектов -->
+    <!-- Автоматический установщик окружения -->
+    <section class="mb-12 p-6 rounded-xl border border-sky-500/40 bg-sky-950/20 backdrop-blur-sm">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-amber-400 font-mono text-sm font-bold">⚡ БЫСТРЫЙ СТАРТ: УСТАНОВЩИК ОКРУЖЕНИЯ</span>
+            <span class="text-[10px] font-mono bg-sky-900/60 text-sky-300 px-2 py-0.5 rounded border border-sky-700/50">Auto-Fix</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
+            Если программы не открываются по клику: скачайте скрипт настройки. Он проверяет наличие Python, прописывает системный PATH и автоматически ставит библиотеки (<code class="text-sky-400">psutil</code>, <code class="text-sky-400">pillow</code>, <code class="text-sky-400">pystray</code>, <code class="text-sky-400">pynput</code>).
+          </p>
+        </div>
+        <button onclick="downloadSetupScript()" class="shrink-0 inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-mono text-xs font-bold px-4 py-2.5 rounded-lg transition-all shadow-lg shadow-sky-950">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          Скачать setup_env.bat
+        </button>
+      </div>
+    </section>
+
+    <!-- Сетка приложений -->
     <section class="space-y-8">
       <div class="flex items-center justify-between text-xs font-mono text-slate-500 uppercase tracking-widest border-b border-slate-900 pb-3">
-        <span>Программные модули</span>
-        <span>Windows / Python</span>
+        <span>Программы</span>
+        <span>Windows / Pythonw</span>
       </div>
 
-      <!-- Карточка 1: Sentinel OS Core -->
-      <article class="border border-slate-800/80 bg-slate-900/40 hover:border-sky-500/50 transition-all duration-200 p-6 sm:p-7 rounded-xl backdrop-blur-sm">
+      <!-- Приложение 1: Sentinel OS Core -->
+      <article class="border border-slate-800/80 bg-slate-900/40 hover:border-sky-500/50 transition-all duration-200 p-6 sm:p-7 rounded-xl">
         <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
           <div class="flex items-center gap-3">
             <span class="text-sky-400 font-mono text-lg font-bold">01.</span>
@@ -75,35 +94,35 @@
               Sentinel OS Core
             </h2>
           </div>
-          <span class="text-xs font-mono text-sky-400/80 bg-sky-950/60 px-2.5 py-0.5 rounded border border-sky-900">v4.5 Production &bull; 2026</span>
+          <span class="text-xs font-mono text-sky-400/80 bg-sky-950/60 px-2.5 py-0.5 rounded border border-sky-900">v4.5 Full &bull; 2026</span>
         </div>
 
         <p class="text-sm text-slate-300 mb-5 leading-relaxed">
-          Автономная система умной сортировки папки <code class="text-sky-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Downloads</code> с временным буфером «Недавнее» (90 мин), глубокой каталогизацией подпапок, проверкой целостности скачиваний, вычислением MD5-хешей для мгновенного удаления дубликатов и встроенным AV-сканером угроз реестра и памяти.
+          Автономный органайзер каталога Загрузок (<code class="text-sky-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Downloads</code>). Буфер «Недавнее» на 90 минут, автоматическое распределение по категориям, MD5-дедупликация идентичных файлов, глубокий сканер подозрительных процессов и системная телеметрия ЦП/ОЗУ/GPU.
         </p>
 
         <div class="flex flex-wrap gap-2 mb-6">
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Python 3.10+</span>
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Tkinter GUI</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">WinAPI Registry</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">MD5 Hash Engine</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">System AV Core</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Auto Sort 90m</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">MD5 Cleaner</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Sentinel-AV</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Tray Engine</span>
         </div>
 
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
           <button onclick="openModal('modal-core')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
-            📖 Инструкция и разбор &rarr;
+            📖 Инструкция по использованию &rarr;
           </button>
           
-          <a href="./file_sorter.pyw" download="file_sorter.pyw" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950">
+          <button onclick="downloadSorterScript()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-sky-950">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Скачать file_sorter.pyw
-          </a>
+          </button>
         </div>
       </article>
 
-      <!-- Карточка 2: Focus Shade Matrix -->
-      <article class="border border-slate-800/80 bg-slate-900/40 hover:border-emerald-500/50 transition-all duration-200 p-6 sm:p-7 rounded-xl backdrop-blur-sm">
+      <!-- Приложение 2: Focus Shade Matrix -->
+      <article class="border border-slate-800/80 bg-slate-900/40 hover:border-emerald-500/50 transition-all duration-200 p-6 sm:p-7 rounded-xl">
         <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
           <div class="flex items-center gap-3">
             <span class="text-emerald-400 font-mono text-lg font-bold">02.</span>
@@ -115,25 +134,25 @@
         </div>
 
         <p class="text-sm text-slate-300 mb-5 leading-relaxed">
-          Многомониторный оверлей фокуса на чистых Windows API. Автоматически перехватывает координаты курсора мыши и затемняет неактивные мониторы без потери фокуса ввода. Поддерживает бинды горячих клавиш (включая <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse4</code> / <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse5</code>), автозапуск в трей и полное аппаратное ускорение без мерцания.
+          Многомониторная система концентрации внимания на базе Windows API. Создает кликабельные прозрачные слои затемнения неактивных дисплеев, плавно переводит свет на экран под курсором мыши, поддерживает бинды клавиш и кнопок мыши (<code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse4</code> / <code class="text-emerald-300 font-mono text-xs bg-slate-800 px-1 py-0.5 rounded">Mouse5</code>).
         </p>
 
         <div class="flex flex-wrap gap-2 mb-6">
           <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Multi-Monitor WinAPI</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Layered Click-Through</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Low-Level Hooks</span>
-          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">System Tray</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Mouse Tracker</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Click-Through Layer</span>
+          <span class="text-[11px] font-mono bg-slate-950 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">Global Hotkeys</span>
         </div>
 
         <div class="flex items-center justify-between flex-wrap gap-3 pt-4 border-t border-slate-800/60">
           <button onclick="openModal('modal-focus')" class="text-xs font-mono text-slate-300 hover:text-white flex items-center gap-1 hover:underline underline-offset-4">
-            📖 Инструкция и разбор &rarr;
+            📖 Инструкция по использованию &rarr;
           </button>
           
-          <a href="./sentinel_dimmer.pyw" download="sentinel_dimmer.pyw" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950">
+          <button onclick="downloadDimmerScript()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold px-4 py-2 rounded-lg transition-colors shadow-lg shadow-emerald-950">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Скачать sentinel_dimmer.pyw
-          </a>
+          </button>
         </div>
       </article>
 
@@ -141,80 +160,44 @@
 
     <!-- Подвал -->
     <footer class="mt-20 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-slate-500 gap-4">
-      <span>Operator &bull; Sentinel OS Architecture</span>
-      <span>Hosted on GitHub Pages</span>
+      <span>Operator &bull; Sentinel OS Platform</span>
+      <span>GitHub Pages Deploy</span>
     </footer>
   </main>
 
-  <!-- МОДАЛКА 1 -->
+  <!-- МОДАЛКА CORE -->
   <div id="modal-core" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#0b1017] border border-slate-700 w-full max-w-3xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
+    <div class="bg-[#0b1017] border border-slate-700 w-full max-w-2xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
         <h3 class="text-white font-mono font-bold text-base flex items-center gap-2">
-          <span class="text-sky-400">#</span> Sentinel OS Core v4.5 — Руководство
+          <span class="text-sky-400">#</span> Sentinel OS Core v4.5
         </h3>
         <button onclick="closeModal('modal-core')" class="text-slate-400 hover:text-white font-mono text-lg">&times;</button>
       </div>
-
-      <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-300 leading-relaxed font-sans">
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">1. Назначение</h4>
-          <p>Sentinel OS Core держит в порядке директорию Загрузок (<code class="font-mono text-xs text-sky-300">Downloads</code>). Новые файлы попадают в буферную папку «Недавнее» на 90 минут, после чего автоматически раскладываются по категориям и типам расширений.</p>
-        </div>
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">2. Возможности</h4>
-          <ul class="list-disc pl-5 space-y-1 text-slate-400">
-            <li><strong>Удаление дубликатов:</strong> вычисляет точный MD5-хеш и стирает копии.</li>
-            <li><strong>Sentinel-AV:</strong> сканирует реестр Run, память и подозрительные скрипты на трояны/майнеры.</li>
-            <li><strong>Телеметрия железа:</strong> мониторинг ЦП, ОЗУ, дисков и видеоадаптера.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-sky-300">3. Запуск</h4>
-          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400">
-            python file_sorter.pyw
-          </div>
-          <p class="text-xs text-slate-400 mt-2">Зависимости (psutil, pillow, pystray) программа скачает сама при первом старте.</p>
-        </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 font-sans leading-relaxed">
+        <p><strong>Как работает буфер:</strong> Все новые файлы из браузера попадают в папку «Недавнее» на 90 минут. Если файл нужен прямо сейчас — он под рукой. Спустя 90 минут программа сама распределяет его по нужным каталогам.</p>
+        <p><strong>Защита системы:</strong> Кнопка «🛡 Антивирус OS» сканирует ключи автозагрузки, активные процессы в RAM и исполняемые скрипты на наличие вредоносных команд.</p>
+        <p><strong>Очистка места:</strong> Кнопка «🎯 Удалить дубли» сверяет MD5-суммы и удаляет полные копии файлов, освобождая память накопителя.</p>
       </div>
-
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
         <button onclick="closeModal('modal-core')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
       </div>
     </div>
   </div>
 
-  <!-- МОДАЛКА 2 -->
+  <!-- МОДАЛКА FOCUS -->
   <div id="modal-focus" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#0b1017] border border-slate-700 w-full max-w-3xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
+    <div class="bg-[#0b1017] border border-slate-700 w-full max-w-2xl max-h-[85vh] rounded-xl flex flex-col shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
         <h3 class="text-white font-mono font-bold text-base flex items-center gap-2">
-          <span class="text-emerald-400">#</span> Focus Shade Matrix — Руководство
+          <span class="text-emerald-400">#</span> Focus Shade Matrix
         </h3>
         <button onclick="closeModal('modal-focus')" class="text-slate-400 hover:text-white font-mono text-lg">&times;</button>
       </div>
-
-      <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-300 leading-relaxed font-sans">
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">1. Назначение</h4>
-          <p>Многомониторный оверлей для систем с 2-3 и более экранами. Затемняет неактивные мониторы через WinAPI-слои без блокировки кликов.</p>
-        </div>
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">2. Управление</h4>
-          <ul class="list-disc pl-5 space-y-1 text-slate-400">
-            <li><strong>Следование за курсором:</strong> подсвечен только тот экран, где находится мышь.</li>
-            <li><strong>Горячая клавиша:</strong> по умолчанию <strong>F9</strong>. Можно переназначить на боковые кнопки мыши (Mouse4 / Mouse5) прямо в интерфейсе.</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-white font-bold font-mono mb-2 text-emerald-300">3. Запуск</h4>
-          <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-emerald-400">
-            pythonw sentinel_dimmer.pyw
-          </div>
-          <p class="text-xs text-slate-400 mt-2">Запускается в фоне без окна консоли и прячется в системный трей.</p>
-        </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 font-sans leading-relaxed">
+        <p><strong>Следование за мышью:</strong> Программа отслеживает экран с курсором. Неактивные мониторы автоматически приглушаются полупрозрачным черным оверлеем.</p>
+        <p><strong>Горячие клавиши:</strong> Стандартный бинд — клавиша <strong>F9</strong>. Чтобы изменить, нажмите желтую кнопку бинда и зажмите нужную комбинацию на клавиатуре или боковые кнопки мыши (Mouse4 / Mouse5).</p>
       </div>
-
       <div class="px-6 py-4 border-t border-slate-800 flex justify-end">
         <button onclick="closeModal('modal-focus')" class="bg-slate-800 hover:bg-slate-700 text-white font-mono text-xs px-4 py-2 rounded-lg transition-colors">Закрыть</button>
       </div>
@@ -222,12 +205,281 @@
   </div>
 
   <script>
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    function downloadFile(filename, content) {
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-  </script>
-</body>
-</html>
+
+    // Скрипт автоматической подготовки системы
+    const SETUP_BAT = `@echo off
+chcp 65001 >nul
+title Sentinel OS Environment Setup
+color 0b
+echo ========================================================
+echo   SENTINEL OS :: НАСТРОЙКА И ПРОВЕРКА ОКРУЖЕНИЯ PYTHON
+echo ========================================================
+echo.
+
+python --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo [!] Python не найден в системе. Начинается автозагрузка...
+    set "PY_URL=https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe"
+    set "PY_TEMP=%temp%\\py_install.exe"
+    powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('%PY_URL%', '%PY_TEMP%')"
+    echo [>] Установка Python с добавлением в PATH...
+    start /wait "" "%PY_TEMP%" /quiet InstallAllUsers=0 PrependPath=1 Include_pip=1
+    del /f /q "%PY_TEMP%" >nul 2>&1
+    set "PATH=%LOCALAPPDATA%\\Programs\\Python\\Python311;%LOCALAPPDATA%\\Programs\\Python\\Python311\\Scripts;%PATH%"
+) else (
+    echo [✓] Python найден в системе.
+)
+
+echo [>] Установка необходимых библиотек...
+python -m pip install --upgrade pip --quiet
+python -m pip install psutil pillow pystray pynput --quiet
+
+echo.
+echo ========================================================
+echo [✓] Готово! Теперь программы запускаются в один клик.
+echo ========================================================
+pause
+`;
+
+    // Полный код Sentinel OS Core с обработкой ошибок
+    const FILE_SORTER_PYW = `import os
+import sys
+import subprocess
+import shutil
+import time
+import threading
+import winreg
+import tempfile
+import hashlib
+import math
+import socket
+from datetime import datetime
+from pathlib import Path
+
+# Блок безопасного запуска GUI
+try:
+    import tkinter as tk
+    from tkinter import ttk, messagebox
+except Exception as e:
+    sys.exit(1)
+
+try:
+    import ctypes
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("Operator.SentinelOS.Core.4.5")
+except Exception:
+    pass
+
+SINGLE_INSTANCE_PORT = 49201
+try:
+    _instance_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    _instance_socket.bind(('127.0.0.1', SINGLE_INSTANCE_PORT))
+except OSError:
+    sys.exit(0)
+
+APP_NAME = "Sentinel OS"
+TARGET_DIR = Path.home() / "Downloads"
+RECENT_FOLDER_NAME = "Недавнее"
+
+CATEGORIES = {
+    "Аудио": [".mp3", ".wav", ".flac", ".ogg", ".mid", ".aac", ".m4a"],
+    "Архивы": [".zip", ".rar", ".7z", ".tar", ".gz", ".iso", ".torrent"],
+    "Изображения": [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".svg", ".ico", ".psd", ".kra"],
+    "Видео": [".mp4", ".mkv", ".avi", ".mov", ".webm", ".wmv"],
+    "Программы и Скрипты": [".exe", ".msi", ".msixbundle", ".bat", ".cmd", ".ps1", ".py", ".reg", ".apk"],
+    "Документы": [".pdf", ".docx", ".doc", ".txt", ".xlsx", ".xls", ".xlsm", ".pptx", ".csv", ".cer"],
+    "Моды Minecraft": [".jar"],
+}
+
+TEMP_EXTENSIONS = {".crdownload", ".part", ".tmp", ".download"}
+IGNORED_FILES = {"desktop.ini", "thumbs.db"}
+AUTORUN_REG_KEY = r"Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+
+MALICIOUS_PATTERNS = [
+    b"powershell -w hidden",
+    b"powershell -windowstyle hidden",
+    b"downloadstring",
+    b"bitsadmin /transfer",
+    b"certutil -urlcache",
+    b"set-mppreference -disablerealtime",
+    b"vssadmin delete shadows",
+    b"reg add hkcu\\\\software\\\\microsoft\\\\windows\\\\currentversion\\\\run",
+    b"rundll32.exe javascript:",
+    b"invoke-webrequest -usebasicparsing",
+    b"invoke-expression"
+]
+
+def get_console_python_path() -> str:
+    cur = Path(sys.executable)
+    if cur.name.lower() == "pythonw.exe":
+        cand = cur.parent / "python.exe"
+        if cand.exists():
+            return str(cand)
+    return str(cur)
+
+def get_accurate_os_name() -> str:
+    try:
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion") as key:
+            prod_name, _ = winreg.QueryValueEx(key, "ProductName")
+            build_str, _ = winreg.QueryValueEx(key, "CurrentBuild")
+            build = int(build_str)
+            disp_ver = ""
+            try:
+                disp_ver, _ = winreg.QueryValueEx(key, "DisplayVersion")
+            except FileNotFoundError:
+                pass
+            if build >= 22000:
+                prod_name = prod_name.replace("Windows 10", "Windows 11")
+            ver_part = f" ({disp_ver})" if disp_ver else ""
+            return f"{prod_name}{ver_part} [Build {build}]"
+    except Exception:
+        build = sys.getwindowsversion().build
+        win_ver = "Windows 11" if build >= 22000 else "Windows 10"
+        return f"{win_ver} [Build {build}]"
+
+def get_cpu_brand_name() -> str:
+    try:
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0") as key:
+            name, _ = winreg.QueryValueEx(key, "ProcessorNameString")
+            return name.strip()
+    except Exception:
+        return os.environ.get("PROCESSOR_IDENTIFIER", "CPU")
+
+def generate_app_icon_file() -> str:
+    ico_path = os.path.join(tempfile.gettempdir(), "sentinel_badge.ico")
+    try:
+        from PIL import Image, ImageDraw
+        img = Image.new("RGBA", (64, 64), color=(0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        d.polygon([(32, 4), (60, 18), (52, 54), (32, 62), (12, 54), (4, 18)], fill="#090d16", outline="#38bdf8", width=3)
+        d.polygon([(32, 14), (48, 22), (42, 46), (32, 52), (22, 46), (16, 22)], fill="#0284c7")
+        d.ellipse([(28, 28), (36, 36)], fill="#38bdf8", outline="#ffffff", width=1)
+        img.save(ico_path, format="ICO", sizes=[(64, 64), (32, 32), (16, 16)])
+        return ico_path
+    except Exception:
+        return ""
+
+class NatureRelaxWindow:
+    def __init__(self, parent):
+        self.win = tk.Toplevel(parent)
+        self.win.title("Sentinel OS — Зона Спокойствия")
+        self.win.geometry("660x490")
+        self.win.configure(bg="#070c12")
+        self.win.resizable(False, False)
+        self.win.attributes("-topmost", True)
+        canvas = tk.Canvas(self.win, width=660, height=490, highlightthickness=0)
+        canvas.pack(fill=tk.BOTH, expand=True)
+        canvas.create_rectangle(0, 0, 660, 260, fill="#38bdf8", outline="")
+        for cx, cy in [(140, 70), (170, 65), (200, 70), (450, 90), (480, 85), (510, 90)]:
+            canvas.create_oval(cx-25, cy-18, cx+25, cy+18, fill="#ffffff", outline="")
+        sx, sy, r = 85, 85, 38
+        for angle in range(0, 360, 30):
+            rad = math.radians(angle)
+            canvas.create_line(sx + math.cos(rad)*(r+4), sy + math.sin(rad)*(r+4),
+                               sx + math.cos(rad)*(r+22), sy + math.sin(rad)*(r+22), fill="#facc15", width=3)
+        canvas.create_oval(sx - r, sy - r, sx + r, sy + r, fill="#fde047", outline="#eab308", width=2)
+        canvas.create_oval(-80, 160, 420, 370, fill="#15803d", outline="")
+        canvas.create_oval(260, 170, 760, 380, fill="#166534", outline="")
+        canvas.create_rectangle(0, 250, 660, 490, fill="#22c55e", outline="")
+        river_points = [(300, 240), (340, 240), (390, 310), (440, 370), (430, 430), (390, 490),
+                        (290, 490), (320, 420), (310, 350), (270, 290)]
+        canvas.create_polygon(river_points, fill="#0284c7", outline="#38bdf8", width=2, smooth=True)
+        for fx, fy in [(60, 320), (120, 390), (190, 300), (230, 430), (530, 330), (590, 400), (490, 450)]:
+            canvas.create_oval(fx-4, fy-4, fx+4, fy+4, fill="#f43f5e", outline="")
+            canvas.create_oval(fx-1, fy-1, fx+1, fy+1, fill="#fef08a", outline="")
+        canvas.create_text(330, 465, text="✨ Всё в порядке. Рабочий стол чист ✨", fill="#ffffff", font=("Segoe UI", 11, "bold"))
+
+class HardwareDiagWindow:
+    def __init__(self, parent):
+        self.win = tk.Toplevel(parent)
+        self.win.title("Sentinel OS — Телеметрия Системы")
+        self.win.geometry("680x560")
+        self.win.configure(bg="#080a0c")
+        self.win.resizable(False, False)
+        self.win.attributes("-topmost", True)
+        header = tk.Frame(self.win, bg="#0f172a", padx=16, pady=12)
+        header.pack(fill=tk.X)
+        tk.Label(header, text="⚡ АППАРАТНАЯ ТЕЛЕМЕТРИЯ И РЕСУРСЫ", fg="#38bdf8", bg="#0f172a", font=("Consolas", 12, "bold")).pack(side=tk.LEFT)
+        self.text_box = tk.Text(self.win, bg="#050709", fg="#34d399", font=("Consolas", 11), relief="flat", padx=16, pady=14)
+        self.text_box.pack(fill=tk.BOTH, expand=True, padx=12, pady=12)
+        self._load_specs()
+
+    def _load_specs(self):
+        specs = []
+        specs.append(f"• Операционная система: {get_accurate_os_name()}")
+        specs.append(f"• Архитектура: {os.environ.get('PROCESSOR_ARCHITECTURE', 'AMD64')}")
+        try:
+            import psutil
+            cpu_name = get_cpu_brand_name()
+            cores = psutil.cpu_count(logical=False)
+            threads = psutil.cpu_count(logical=True)
+            usage = psutil.cpu_percent(interval=0.2)
+            specs.append(f"\\n[ ПРОЦЕССОР (CPU) ]")
+            specs.append(f"• Модель: {cpu_name}")
+            specs.append(f"• Ядра / Потоки: {cores}C / {threads}T | Нагрузка: {usage}%")
+            ram = psutil.virtual_memory()
+            specs.append(f"\\n[ ОПЕРАТИВНАЯ ПАМЯТЬ (RAM) ]")
+            specs.append(f"• Всего ОЗУ: {round(ram.total / (1024**3), 1)} GB")
+            specs.append(f"• Свободно: {round(ram.free / (1024**3), 1)} GB ({ram.percent}% занято)")
+            specs.append(f"\\n[ НАКОПИТЕЛИ И ДИСКИ ]")
+            for part in psutil.disk_partitions(all=False):
+                try:
+                    u = psutil.disk_usage(part.mountpoint)
+                    specs.append(f"• Диск {part.device} [{part.fstype}] -> Доступно: {u.free // (1024**3)} GB из {u.total // (1024**3)} GB ({u.percent}% занято)")
+                except PermissionError:
+                    continue
+        except ImportError:
+            specs.append("\\n[!] psutil устанавливается...")
+        specs.append(f"\\n[ ВИДЕОКАРТА (GPU) ]")
+        try:
+            cmd = 'powershell "Get-CimInstance Win32_VideoController | Select-Object -ExpandProperty Name"'
+            gpu = subprocess.check_output(cmd, shell=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW).strip()
+            specs.append(f"• GPU: {gpu if gpu else 'Стандартный графический адаптер'}")
+        except Exception:
+            specs.append("• GPU: Информация недоступна")
+        self.text_box.delete("1.0", tk.END)
+        self.text_box.insert(tk.END, "\\n".join(specs))
+
+class SentinelOSApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title(APP_NAME)
+        self.root.state("zoomed")
+        self.root.minsize(980, 680)
+        self.root.configure(bg="#060b13")
+        self.is_running = True
+        self.check_interval_seconds = 60
+        self.recent_retention_seconds = 90 * 60
+        self.countdown = self.check_interval_seconds
+        self.total_sorted_counter = 0
+        self.tray_icon = None
+        self.pystray_ready = False
+        self.ico_path = ""
+        self.pulse_step = 0
+        self.is_busy = False
+        self.busy_pos = 0
+        self._init_theme()
+        self._build_gradient_background()
+        self._build_ui()
+        self._animate_pulse()
+        threading.Thread(target=self._bootstrap_environment, daemon=True).start()
+
+    def _init_theme(self):
+        style = ttk.Style()
+        style.theme_use("clam")
+        style.configure("Dark.TCombobox", fieldbackground="#131e2e", background="#0b1420", foreground="#38bdf8",
+                        darkcolor="#131e2e", lightcolor="#131e2e", selectbackground="#131e2e", selectforeground="#38bdf8",
+                        arrowcolor="#38bdf8", bordercolor="#223954")

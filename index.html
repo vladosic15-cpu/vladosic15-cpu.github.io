@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects & Archive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#0b0c10] text-[#c5c6c7] font-sans antialiased min-h-screen selection:bg-white selection:text-black">
+
+  <main class="max-w-4xl mx-auto px-6 py-16 sm:py-24">
+    <!-- Header -->
+    <header class="mb-16 border-b border-[#1f2833]/60 pb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono">Archive // Lab</h1>
+        <span class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-2.5 py-0.5 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> live
+        </span>
+      </div>
+      <p class="text-sm sm:text-base text-neutral-400 max-w-xl leading-relaxed">
+        Витрина проектов, софта, скриптов и технических экспериментов. Создано и поддерживается совместно.
+      </p>
+      
+      <div class="flex gap-4 mt-6 text-xs font-mono">
+        <a href="https://github.com" target="_blank" class="text-neutral-400 hover:text-white transition-colors duration-150 underline underline-offset-4">GitHub &rarr;</a>
+        <a href="https://t.me" target="_blank" class="text-neutral-400 hover:text-white transition-colors duration-150 underline underline-offset-4">Telegram &rarr;</a>
+      </div>
+    </header>
+
+    <!-- Project List -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between text-xs font-mono text-neutral-500 uppercase tracking-widest mb-8">
+        <span>Проекты</span>
+        <span>Статус / Год</span>
+      </div>
+
+      <!-- Card 1 -->
+      <article class="group border border-[#1f2833] bg-[#12141a]/60 hover:bg-[#161922] transition-colors duration-200 p-6 rounded-lg">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+          <h2 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">
+            Aegis Bot Core
+          </h2>
+          <span class="text-xs font-mono text-neutral-500">v2.1 &bull; 2026</span>
+        </div>
+        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">
+          Асинхронный Telegram-бот с модульной структурой, интеграцией сторонних API и кастомной логикой обработки очередей.
+        </p>
+        <div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-[#1f2833]/40">
+          <div class="flex gap-2">
+            <span class="text-[11px] font-mono bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-0.5 rounded">Python</span>
+            <span class="text-[11px] font-mono bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-0.5 rounded">aiogram</span>
+            <span class="text-[11px] font-mono bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-0.5 rounded">REST API</span>
+          </div>
+          <div class="flex gap-3 text-xs font-mono">
+            <a href="#" class="text-neutral-300 hover:text-white hover:underline underline-offset-4">Source</a>
+            <span class="text-neutral-700">|</span>
+            <a href="#" class="text-neutral-300 hover:text-white hover:underline underline-offset-4">Deploy &rarr;</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="group border border-[#1f2833] bg-[#12141a]/60 hover:bg-[#161922] transition-colors duration-200 p-6 rounded-lg">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+          <h2 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors font-mono">
+            Automation Pipeline
+          </h2>
+          <span class="text-xs font-mono text-neutral-500">v1.0 &bull; 2026</span>
+        </div>
+        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">
+          Набор утилит и bash/python скриптов для автоматического парсинга, сортировки данных и локального бекапа конфигураций.
+        </p>
+        <div class="flex items-center justify-between flex-wrap gap-4 pt-4 border-t border-[#1f2833]/40">
+          <div class="flex gap-2">
+            <span class="text-[11px] font-mono bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-0.5 rounded">Bash</span>
+            <span class="text-[11px] font-mono bg-neutral-900 border border-neutral-800 text-neutral-400 px-2 py-0.5 rounded">CLI</span>
+          </div>
+          <div class="flex gap-3 text-xs font-mono">
+            <a href="#" class="text-neutral-300 hover:text-white hover:underline underline-offset-4">Source &rarr;</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 pt-8 border-t border-[#1f2833]/60 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-neutral-600 gap-4">
+      <span>Built with Operator</span>
+      <span>Hosted on GitHub Pages</span>
+    </footer>
+  </main>
+
+</body>
+</html>
